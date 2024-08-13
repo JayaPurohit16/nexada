@@ -30,7 +30,7 @@
                             <label for="first_name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">First Name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('first_name') is-invalid @enderror" name="first_name" id="first_name"
-                                placeholder="First Name" maxlength="100">
+                                placeholder="First Name" value="{{ old('first_name') }}" maxlength="100">
                             @error('first_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -40,7 +40,7 @@
                             <label for="second_name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Second Name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('second_name') is-invalid @enderror" name="second_name" id="second_name"
-                                placeholder="Second Name" maxlength="100">
+                                placeholder="Second Name" value="{{ old('second_name') }}" maxlength="100">
                             @error('second_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -52,7 +52,7 @@
                                     class="form-label fw-semibold text-primary-light text-sm mb-8">Email
                                     <span class="text-danger-600">*</span></label>
                                 <input type="email" class="form-control radius-8 @error('email') is-invalid @enderror" name="email"
-                                    id="email" placeholder="Email address" maxlength="100">
+                                    id="email" placeholder="Email address" value="{{ old('email') }}" maxlength="100">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -63,7 +63,7 @@
                             <label for="phone"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Contact Number <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('phone') is-invalid @enderror" name="phone" id="phone"
-                                placeholder="Contact Number" minlength="10" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                placeholder="Contact Number" value="{{ old('phone') }}" minlength="10" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>

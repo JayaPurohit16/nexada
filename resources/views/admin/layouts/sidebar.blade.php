@@ -3,16 +3,8 @@
         <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
     </button>
     <div>
-        @php
-            $cmsSetting = App\Models\CmsSettting::pluck('value', 'key')->toArray()
-        @endphp
         <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
-            {{-- <h3>LMS</h2> --}}
-                @if($cmsSetting['website_logo'])
-                    <img src="{{ asset($cmsSetting['website_logo']) }}" alt="site logo" class="light-logo">
-                @else
-                    <h3>LMS</h2>
-                @endif
+                    <img src="{{ asset(appLogoUrl()) }}" alt="site logo" class="light-logo">
             {{-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="site logo" class="dark-logo">
             <img src="{{ asset('assets/images/logo-icon.png') }}" alt="site logo" class="logo-icon"> --}}
         </a>

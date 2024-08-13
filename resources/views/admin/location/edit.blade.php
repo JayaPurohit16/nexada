@@ -50,7 +50,7 @@
 
                         <div class="col-md-6">
                             <label for="calender_by_instruments"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Calender by instruments <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Calender by instruments <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('calender_by_instruments') is-invalid @enderror" name="calender_by_instruments" id="calender_by_instruments"
                                 placeholder="Calender by instruments" maxlength="100" value="{{ $location->calender_by_instruments ?? '' }}">
                             @error('calender_by_instruments')

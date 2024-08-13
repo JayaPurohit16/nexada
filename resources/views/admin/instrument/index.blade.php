@@ -124,10 +124,21 @@
                     {
                         data: 'tag',
                     },
+                    // {
+                    //     data: 'image',
+                    //     render: function(data, type, row) {
+                    //         return `<img src="{{ asset('${data}') }}" class="img-thumbnail" alt="Image">`;
+                    //     },
+                    //     orderable: false
+                    // },
                     {
                         data: 'image',
                         render: function(data, type, row) {
-                            return `<img src="{{ asset('${data}') }}" class="img-thumbnail" alt="Image">`;
+                            if (data !== null) {
+                                return `<img src="{{ asset('${data}') }}" class="img-thumbnail" alt="Image">`;
+                            } else {
+                                return `<img src="{{ asset('assets/images/instrument-image.jpg') }}" class="img-thumbnail" alt="Image">`;
+                            }
                         },
                         orderable: false
                     },

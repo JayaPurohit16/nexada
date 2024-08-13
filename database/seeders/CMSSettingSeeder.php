@@ -16,8 +16,8 @@ class CMSSettingSeeder extends Seeder
     public function run()
     {
         $input = [
-            ['key' => 'website_logo', 'value' => 'uploads/logo/1722338735_lms-logo.jpg'],
-            ['key' => 'favicon_logo', 'value' => 'uploads/favicon_logo/1722338758_lms-favicon-logo.jpg'],
+            ['key' => 'website_logo', 'value' => null],
+            ['key' => 'favicon_logo', 'value' => null],
             ['key' => 'facebook_link', 'value' => 'https://www.facebook.com'],
             ['key' => 'instagram_link', 'value' => 'https://www.instagram.com'],
             ['key' => 'twitter_link', 'value' => 'https://www.twitter.com'],

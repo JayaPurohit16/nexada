@@ -30,7 +30,7 @@
                             <label for="name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Display name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('name') is-invalid @enderror" name="name" id="name"
-                                placeholder="Display name" maxlength="100">
+                                placeholder="Display name" value="{{ old('name') }}" maxlength="100">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -40,7 +40,7 @@
                             <label for="tag"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Tag <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('tag') is-invalid @enderror" name="tag" id="tag"
-                                placeholder="tag" maxlength="100">
+                                placeholder="tag" value="{{ old('tag') }}" maxlength="100">
                             @error('tag')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

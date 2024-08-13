@@ -73,7 +73,8 @@ class AdminController extends Controller
 
             if($user){
                 $data = [
-                    'name'     => $user->first_name,
+                    'first_name'     => $user->first_name,
+                    'second_name'     => $user->second_name,
                     'password' => $randomUserPassword,
                 ];
                 Mail::to($user->email)->send(new SendPasswordEmail($data));

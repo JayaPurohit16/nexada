@@ -46,7 +46,7 @@
                             @enderror
                             <div class="avatar-upload mt-16">
                                 <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ (!empty($subscription->image)) ? asset($subscription->image) : asset('assets/images/subscription-icon.png') }}');"></div>
+                                    <div id="previewImage1" style="background-image: url('{{ (!empty($subscription->image) && file_exists($subscription->image)) ? asset($subscription->image) : asset('assets/images/subscription-icon.png') }}');"></div>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +267,8 @@
                                 <div class="row gy-4">
                                     <div class="col-md-3">
                                         <label for="price_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span class="text-danger-600">*</span></label>
-                                        <input type="number" class="form-control radius-8 price price-field" name="price[]" id="price_${counter}" placeholder="Price" value="0" min="0" max="100000">
+                                        <input type="number" class="form-control radius-8 price price-field" name="price[]" id="price_${counter}" placeholder="Price" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100000">
                                     </div>
 
                                     <div class="col-md-3">
@@ -285,7 +286,8 @@
 
                                     <div class="col-md-3">
                                         <label for="discount_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Discount (in %) <span class="text-danger-600">*</span></label>
-                                        <input type="number" class="form-control radius-8 discount-field discount" name="discount[]" id="discount_${counter}" placeholder="Discount (in %)" value="0" min="0" max="100">
+                                        <input type="number" class="form-control radius-8 discount-field discount" name="discount[]" id="discount_${counter}" placeholder="Discount (in %)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100">
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn btn-outline-danger remove-pricing-group" style="margin-top: 33px">Remove</button>

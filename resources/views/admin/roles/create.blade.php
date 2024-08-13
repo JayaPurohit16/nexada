@@ -30,7 +30,7 @@
                             <label for="facebook_link"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Role <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('role') is-invalid @enderror" name="role" id="role"
-                                placeholder="Role" maxlength="50">
+                                placeholder="Role" value="{{ old('role') }}" maxlength="50">
                             @error('role')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror

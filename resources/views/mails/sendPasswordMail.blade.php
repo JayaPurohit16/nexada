@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <p> Hi, {{$data['name'] ?? ''}}</p>
+    <p> Hi, {{$data['first_name'] ?? ''}} {{$data['second_name'] ?? ''}}</p>
     <p>This is your password: {{ $data['password'] ?? '' }}</p>
 </body>
 </html>

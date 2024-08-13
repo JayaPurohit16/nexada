@@ -29,7 +29,7 @@
                             @enderror
                             <div class="avatar-upload mt-16">
                                 <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ (!empty($cmsSettings['website_logo'])) ? asset($cmsSettings['website_logo']) : asset('assets/images/payment/upload-image.png') }}');"></div>
+                                    <div id="previewImage1" style="background-image: url('{{ (!empty($cmsSettings['website_logo']) && file_exists($cmsSettings['website_logo'])) ? asset($cmsSettings['website_logo']) : asset('assets/images/payment/upload-image.png') }}');"></div>
                                 </div>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                             @enderror
                             <div class="avatar-upload mt-16">
                                 <div class="avatar-preview style-two">
-                                    <div id="previewImage2" style="background-image: url('{{ (!empty($cmsSettings['favicon_logo'])) ? asset($cmsSettings['favicon_logo']) : asset('assets/images/payment/upload-image.png') }}');"></div>
+                                    <div id="previewImage2" style="background-image: url('{{ (!empty($cmsSettings['favicon_logo']) && file_exists($cmsSettings['favicon_logo'])) ? asset($cmsSettings['favicon_logo']) : asset('assets/images/payment/upload-image.png') }}');"></div>
                                 </div>
                             </div>
                         </div>

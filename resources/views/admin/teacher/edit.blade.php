@@ -107,7 +107,7 @@
                             @enderror
                             <div class="avatar-upload mt-16">
                                 <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ (!empty($teacher->userInfo->profile_image)) ? asset($teacher->userInfo->profile_image) : asset('assets/images/user-grid/user-grid-img13.png ') }}');"></div>
+                                    <div id="previewImage1" style="background-image: url('{{ (!empty($teacher->userInfo->profile_image) && file_exists($teacher->userInfo->profile_image)) ? asset($teacher->userInfo->profile_image) : asset('assets/images/user-grid/user-grid-img13.png ') }}');"></div>
                                 </div>
                             </div>
                         </div>
@@ -245,19 +245,19 @@
                 });
 
                 // ======================== Upload Image Start =====================
-                function readURL(input) {
+                function readURL(input, previewElementId) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
                         reader.onload = function(e) {
-                            $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                            $('#imagePreview').hide();
-                            $('#imagePreview').fadeIn(650);
+                            $('#' + previewElementId).css('background-image', 'url(' + e.target.result + ')');
+                            $('#' + previewElementId).hide();
+                            $('#' + previewElementId).fadeIn(650);
                         }
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
                 $("#imageUpload").change(function() {
-                    readURL(this);
+                    readURL(this, 'previewImage1');
                 });
                 // ======================== Upload Image End =====================
 

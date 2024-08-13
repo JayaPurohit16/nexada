@@ -89,7 +89,8 @@ class StudentController extends Controller
                 $user->save();
                 if($user && $user->email != null){
                     $data = [
-                        'name'     => $user->first_name,
+                        'first_name'     => $user->first_name,
+                        'second_name'     => $user->second_name,
                         'password' => $randomUserPassword,
                     ];
                     Mail::to($user->email)->send(new SendPasswordEmail($data));
@@ -126,7 +127,8 @@ class StudentController extends Controller
 
                     if($parentUser){
                         $data = [
-                            'name'     => $parentUser->first_name,
+                            'first_name'     => $parentUser->first_name,
+                            'second_name'     => $parentUser->second_name,
                             'password' => $randomParentPassword,
                         ];
                         Mail::to($parentUser->email)->send(new SendPasswordEmail($data));
@@ -194,7 +196,8 @@ class StudentController extends Controller
                     $randomUserPassword = Str::random(10);
                     $user->password = Hash::make($randomUserPassword);
                     $data = [
-                        'name'     => $user->first_name,
+                        'first_name'     => $user->first_name,
+                        'second_name'     => $user->second_name,
                         'password' => $randomUserPassword,
                     ];
                     Mail::to($request->email)->send(new SendPasswordEmail($data));
@@ -243,7 +246,8 @@ class StudentController extends Controller
                     $parentUser->save();
 
                     $data = [
-                        'name'     => $parentUser->first_name,
+                        'first_name'     => $parentUser->first_name,
+                        'second_name'     => $parentUser->second_name,
                         'password' => $randomParentPassword,
                     ];
                     Mail::to($parentUser->email)->send(new SendPasswordEmail($data));

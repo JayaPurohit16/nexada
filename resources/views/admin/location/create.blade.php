@@ -30,7 +30,7 @@
                             <label for="location"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Location <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('name') is-invalid @enderror" name="name" id="name"
-                                placeholder="Location" maxlength="100">
+                                placeholder="Location" value="{{ old('name') }}" maxlength="100">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -40,7 +40,7 @@
                             <label for="phone"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Phone <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('phone') is-invalid @enderror" name="phone" id="phone"
-                                placeholder="Phone" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                placeholder="Phone" value="{{ old('phone') }}" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -49,9 +49,9 @@
 
                         <div class="col-md-6">
                             <label for="calender_by_instruments"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Calender by instruments <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Calender by instruments <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('calender_by_instruments') is-invalid @enderror" name="calender_by_instruments" id="calender_by_instruments"
-                                placeholder="Calender by instruments" maxlength="100">
+                                placeholder="Calender by instruments" value="{{ old('calender_by_instruments') }}" maxlength="100">
                             @error('calender_by_instruments')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -61,7 +61,7 @@
                             <label for="api_key"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">API Key <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('api_key') is-invalid @enderror" name="api_key" id="api_key"
-                                placeholder="API Key" maxlength="150">
+                                placeholder="API Key" value="{{ old('api_key') }}" maxlength="150">
                             @error('api_key')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -71,7 +71,7 @@
                             <label for="api_secret_key"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Secret Key<span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('api_secret_key') is-invalid @enderror" name="api_secret_key" id="api_secret_key"
-                                placeholder="Secret Key" maxlength="150">
+                                placeholder="Secret Key" value="{{ old('api_secret_key') }}" maxlength="150">
                             @error('api_secret_key')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -81,7 +81,7 @@
                             <label for="address"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Address <span class="text-danger-600">*</span></label>
                             <textarea type="text" class="form-control radius-8 @error('address') is-invalid @enderror" name="address" id="address"
-                                placeholder="Address" maxlength="200"></textarea>
+                                placeholder="Address" maxlength="200">{{ old('address') }}</textarea>
                             @error('address')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
