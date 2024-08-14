@@ -51,14 +51,15 @@ class LoginController extends Controller
         return redirect('/login');
     }
 
-    // protected function authenticated(Request $request, $user)
-    // {
-    //     if (!$user->hasRole('Admin')) {
-    //         Auth::logout();
-    //         return redirect('/login')->withErrors([
-    //             'email' => 'You do not have the necessary permissions to access this website.'
-    //         ]);
-    //     }
-    //     return redirect(RouteServiceProvider::ADMIN_HOME);
-    // }
+    protected function authenticated(Request $request, $user)
+    {
+        if (!$user->hasRole(['Admin', 'Super Admin', 'Teacher'])) {
+            Auth::logout();
+            return redirect('/login')->withErrors([
+                'email' => 'You do not have the necessary permissions to access this website.'
+            ]);
+        }
+        
+        return redirect(RouteServiceProvider::ADMIN_HOME);
+    }
 }

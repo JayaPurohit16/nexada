@@ -13387,3 +13387,12 @@ td.fc-header-center {
   z-index: 1;
 }
 
+.sidebar-version {
+  position: sticky;
+  bottom: 0;
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+}

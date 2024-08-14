@@ -150,8 +150,8 @@ class RolesController extends Controller
         $orderColumnIndex = $request->order[0]['column'] ?? '0';
         $orderBy = $request->order[0]['dir'] ?? 'desc';
 
-        $query = Role::query();
-        // $query = Role::where('name','!=','Super Admin');
+        // $query = Role::query();
+        $query = Role::where('name','!=','Super Admin');
         // Search
         $search = $request->search;
         $query = $query->where(function($query) use ($search){

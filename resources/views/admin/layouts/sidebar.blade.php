@@ -437,9 +437,9 @@
                 </ul>
             </li> --}}
         </ul>
-        <div>
-            <span class="sidebar-logo">{{ siteVersion()}}</span>
-        </div>
+    </div>
+    <div class="sidebar-version">
+        <span>{{ siteVersion() }}</span>
     </div>
     
 </aside>
