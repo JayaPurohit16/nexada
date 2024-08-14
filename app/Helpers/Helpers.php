@@ -31,3 +31,14 @@ function favionLogoUrl()
 
     return $faviconLogoUrl;
 }
+
+function siteVersion()
+{
+    static $siteVersion;
+
+    if ($siteVersion === null) {
+        $version = CmsSettting::where('key', 'version')->first();
+        $siteVersion = $version->value ? $version->value : 'v1.0.0';
+    }
+    return $siteVersion;
+}

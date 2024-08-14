@@ -99,17 +99,18 @@
                         </div> --}}
 
                         <div class="col-md-6">
-                            <label for="imageUpload" class="form-label fw-semibold text-secondary-light text-md mb-8">Profile Picture <span class="text-danger-600">*</span>
-                                <span class="text-secondary-light fw-normal"></span></label>
-                            <input type="file" name="image" class="form-control radius-8 @error('image') is-invalid @enderror" id="imageUpload" accept=".png, .jpg, .jpeg">
-                            @error('image')
+                            <label for="location_id"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Location <span class="text-danger-600">*</span></label>
+                                <select name="location_id" id="location_id" class="form-control">
+                                    @if (isset($locations))
+                                        @foreach ($locations as $location)
+                                            <option value="{{ $location->id }}" @if ($location->id == $teacher->location_id) selected @endif>{{ $location->name }}</option>
+                                        @endforeach
+                                    @endif
+                            </select>
+                            @error('location_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="avatar-upload mt-16">
-                                <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ (!empty($teacher->userInfo->profile_image) && file_exists($teacher->userInfo->profile_image)) ? asset($teacher->userInfo->profile_image) : asset('assets/images/user-grid/user-grid-img13.png ') }}');"></div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="col-md-6">
@@ -129,6 +130,20 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <label id="instrument_id-error" class="error" for="instrument_id"></label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="imageUpload" class="form-label fw-semibold text-secondary-light text-md mb-8">Profile Picture <span class="text-danger-600">*</span>
+                                <span class="text-secondary-light fw-normal"></span></label>
+                            <input type="file" name="image" class="form-control radius-8 @error('image') is-invalid @enderror" id="imageUpload" accept=".png, .jpg, .jpeg">
+                            @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <div class="avatar-upload mt-16">
+                                <div class="avatar-preview style-two">
+                                    <div id="previewImage1" style="background-image: url('{{ (!empty($teacher->userInfo->profile_image) && file_exists($teacher->userInfo->profile_image)) ? asset($teacher->userInfo->profile_image) : asset('assets/images/user-grid/user-grid-img13.png ') }}');"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-center gap-3">

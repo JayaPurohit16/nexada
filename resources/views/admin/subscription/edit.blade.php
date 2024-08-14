@@ -95,12 +95,21 @@
                                             </div>
                         
                                             <div class="col-md-3">
-                                                <label for="billing_period" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period <span class="text-danger-600">*</span></label>
+                                                <label for="billing_period" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period (In Months) <span class="text-danger-600">*</span></label>
                                                 <select name="billing_period[]" id="billing_period" class="form-control billing_period">
-                                                    <option value="">Select Billing Period</option>
-                                                    <option value="0" @if ($subscriptionType->billing_period == "0") selected @endif>Monthly</option>
-                                                    <option value="1" @if ($subscriptionType->billing_period == "1") selected @endif>Quarterly</option>
-                                                    <option value="2" @if ($subscriptionType->billing_period == "2") selected @endif>Yearly</option>
+                                                    <option value="">Billing Period (In Months)</option>
+                                                    <option value="1" @if ($subscriptionType->billing_period == "1") selected @endif>1</option>
+                                                    <option value="2" @if ($subscriptionType->billing_period == "2") selected @endif>2</option>
+                                                    <option value="3" @if ($subscriptionType->billing_period == "3") selected @endif>3</option>
+                                                    <option value="4" @if ($subscriptionType->billing_period == "4") selected @endif>4</option>
+                                                    <option value="5" @if ($subscriptionType->billing_period == "5") selected @endif>5</option>
+                                                    <option value="6" @if ($subscriptionType->billing_period == "6") selected @endif>6</option>
+                                                    <option value="7" @if ($subscriptionType->billing_period == "7") selected @endif>7</option>
+                                                    <option value="8" @if ($subscriptionType->billing_period == "8") selected @endif>8</option>
+                                                    <option value="9" @if ($subscriptionType->billing_period == "9") selected @endif>9</option>
+                                                    <option value="10" @if ($subscriptionType->billing_period == "10") selected @endif>10</option>
+                                                    <option value="11" @if ($subscriptionType->billing_period == "11") selected @endif>11</option>
+                                                    <option value="12" @if ($subscriptionType->billing_period == "12") selected @endif>12</option>
                                                 </select>
                                                 @error('billing_period.*')
                                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -272,12 +281,21 @@
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label for="billing_period_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period <span class="text-danger-600">*</span></label>
+                                        <label for="billing_period_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period (In Months) <span class="text-danger-600">*</span></label>
                                         <select name="billing_period[]" id="billing_period_${counter}" class="form-control billing-period-field billing_period">
-                                            <option value="">Select Billing Period</option>
-                                            <option value="0">Monthly</option>
-                                            <option value="1">Quarterly</option>
-                                            <option value="2">Yearly</option>
+                                            <option value="">Billing Period (In Months)</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
                                         </select>
                                         @error('billing_period.*')
                                             <div class="invalid-feedback">{{ $message }}</div>

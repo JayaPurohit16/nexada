@@ -22,6 +22,7 @@ class CMSSettingSeeder extends Seeder
             ['key' => 'instagram_link', 'value' => 'https://www.instagram.com'],
             ['key' => 'twitter_link', 'value' => 'https://www.twitter.com'],
             ['key' => 'youtube_link', 'value' => 'https://www.youtube.com'],
+            ['key' => 'version', 'value' => 'v1.0.0'],
         ];
 
         foreach ($input as $data) {

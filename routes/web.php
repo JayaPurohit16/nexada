@@ -78,8 +78,8 @@ Route::group(['middleware' => ['auth','role:Super Admin|Admin|Desk|Teacher|Stude
     //Subscription
     Route::prefix('subscription')->name('admin.subscription.')->group(function () {
         Route::get('/', [SubscriptionController::class, 'index'])->name('index');
-        Route::post('/', [SubscriptionController::class, 'store'])->name('store');
         Route::get('/create', [SubscriptionController::class, 'create'])->name('create');
+        Route::post('/create', [SubscriptionController::class, 'store'])->name('store');
         Route::get('/edit/{id}', [SubscriptionController::class, 'edit'])->name('edit');
         Route::post('/update', [SubscriptionController::class, 'update'])->name('update');
         Route::get('/delete/{id}', [SubscriptionController::class, 'destroy'])->name('destroy');

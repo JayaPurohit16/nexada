@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Mail\SendPasswordEmail;
 use App\Models\Instrument;
+use App\Models\Location;
 use App\Models\Teacher;
 use App\Models\User;
 use Exception;
@@ -41,8 +42,9 @@ class TeacherController extends Controller
     public function create()
     {
         try {
+            $locations = Location::get();
             $instruments = Instrument::get();
-            return view('admin.teacher.create',compact('instruments'));
+            return view('admin.teacher.create',compact('instruments','locations'));
         } catch (Exception $e) {
             Log::info('admin teacher create Error---' . $e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');      
@@ -60,50 +62,52 @@ class TeacherController extends Controller
             // 'confirmPassword' => 'required|same:newPassword',
             'instrument_id'   => 'required|array',
             'instrument_id.*' => 'exists:instruments,id',
+            'location_id'     => 'required',
         ]);
         try {
             DB::beginTransaction();
-                $user = new User();
-                $user->first_name = isset($request->first_name) ? $request->first_name : '';
-                $user->second_name = isset($request->second_name) ? $request->second_name : '';
-                $user->phone = isset($request->phone) ? $request->phone : '';
-                $user->email = isset($request->email) ? $request->email : '';
+            $user = new User();
+            $user->first_name = isset($request->first_name) ? $request->first_name : '';
+            $user->second_name = isset($request->second_name) ? $request->second_name : '';
+            $user->phone = isset($request->phone) ? $request->phone : '';
+            $user->email = isset($request->email) ? $request->email : '';
 
-                $randomUserPassword = Str::random(10);
-                $user->password = Hash::make($randomUserPassword);
+            $randomUserPassword = Str::random(10);
+            $user->password = Hash::make($randomUserPassword);
 
-                if ($request->hasFile('image')) {
-                    if(File::exists(public_path($user->profile_image))){
-                        File::delete(public_path($user->profile_image));
-                    }
-                    $image = $request->file('image');
-                    $imageName = time() . '_' . $image->getClientOriginalName();
-                    $newFileName = str_replace(['(', ')', ' '], ['', '', ''], $imageName);
-                    $image->move(public_path('uploads/profile-image/'), $newFileName);
-                    $user->profile_image = 'uploads/profile-image/' . $newFileName;
+            if ($request->hasFile('image')) {
+                if(File::exists(public_path($user->profile_image))){
+                    File::delete(public_path($user->profile_image));
                 }
-                $role = Role::where('name','Teacher')->first();
-                if($role){
-                    $user->assignRole($role->name);
-                }
-                $user->save();
+                $image = $request->file('image');
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $newFileName = str_replace(['(', ')', ' '], ['', '', ''], $imageName);
+                $image->move(public_path('uploads/profile-image/'), $newFileName);
+                $user->profile_image = 'uploads/profile-image/' . $newFileName;
+            }
+            $role = Role::where('name','Teacher')->first();
+            if($role){
+                $user->assignRole($role->name);
+            }
+            $user->save();
 
-                if($user){
-                    $data = [
-                        'first_name'     => $user->first_name,
-                        'second_name'     => $user->second_name,
-                        'password' => $randomUserPassword,
-                    ];
-                    Mail::to($user->email)->send(new SendPasswordEmail($data));
-                }
-                
-                $teacher = new Teacher();
-                $teacher->user_id = $user->id;
-                $teacher->instruments_can_teach = implode(',',$request->instrument_id);
-                $teacher->save();
+            if($user){
+                $data = [
+                    'first_name'     => $user->first_name,
+                    'second_name'     => $user->second_name,
+                    'password' => $randomUserPassword,
+                ];
+                Mail::to($user->email)->send(new SendPasswordEmail($data));
+            }
+            
+            $teacher = new Teacher();
+            $teacher->user_id = $user->id;
+            $teacher->instruments_can_teach = implode(',',$request->instrument_id);
+            $teacher->location_id = $request->location_id;
+            $teacher->save();
 
-                DB::commit();
-                return redirect()->route('admin.teacher.index')->with('success','Teacher created sucessfully'); 
+            DB::commit();
+            return redirect()->route('admin.teacher.index')->with('success','Teacher created sucessfully'); 
             
         } catch (Exception $e) {
             DB::rollBack();
@@ -116,10 +120,11 @@ class TeacherController extends Controller
     {
         try {
             $teacher = Teacher::where('id',$id)->first();
+            $locations = Location::get();
             $instruments = Instrument::get();
             $selectedInstruments = explode(',', $teacher->instruments_can_teach);
             if($teacher){
-                return view('admin.teacher.edit',compact('teacher','instruments','selectedInstruments'));
+                return view('admin.teacher.edit',compact('teacher','instruments','selectedInstruments','locations'));
             } else {
                 return redirect()->back()->with('error','Teacher not found'); 
             }
@@ -142,6 +147,7 @@ class TeacherController extends Controller
             ],
             'instrument_id'   => 'required|array',
             'instrument_id.*' => 'exists:instruments,id',
+            'location_id'     => 'required',
         ]);
         try {
             DB::beginTransaction();
@@ -174,6 +180,7 @@ class TeacherController extends Controller
                 }
 
                 $teacher->instruments_can_teach = implode(',',$request->instrument_id);
+                $teacher->location_id = $request->location_id;
                 $teacher->update();
             } else {
                 return redirect()->back()->with('error','Teacher not found'); 

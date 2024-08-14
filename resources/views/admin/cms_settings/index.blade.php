@@ -2,7 +2,7 @@
 @section('content')
     <div class="dashboard-main-body">
         <div class="d-flex flex-wrap align-items-center justify-content-between gap-3 mb-24">
-            <h6 class="fw-semibold mb-0">CMS Settings</h6>
+            <h6 class="fw-semibold mb-0">Settings</h6>
             <ul class="d-flex align-items-center gap-2">
                 <li class="fw-medium">
                     <a href="index.html" class="d-flex align-items-center gap-1 hover-text-primary">
@@ -11,7 +11,7 @@
                     </a>
                 </li>
                 <li>-</li>
-                <li class="fw-medium">CMS Settings</li>
+                <li class="fw-medium">Settings</li>
             </ul>
         </div>
 
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="facebook_link"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Facebook Link <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Facebook Link <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('facebook_link') is-invalid @enderror" name="facebook_link" id="facebook_link"
                                 placeholder="Facebook Link" maxlength="100" value="{{ old('facebook_link', $cmsSettings['facebook_link'] ?? '') }}">
                             @error('facebook_link')
@@ -61,7 +61,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="instagram_link"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Instagram Link <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Instagram Link <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('instagram_link') is-invalid @enderror" name="instagram_link" id="instagram_link"
                                 placeholder="Instagram Link" maxlength="100" value="{{ old('instagram_link', $cmsSettings['instagram_link'] ?? '') }}">
                             @error('instagram_link')
@@ -70,7 +70,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="twitter_link"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Twitter Link <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Twitter Link <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('twitter_link') is-invalid @enderror" name="twitter_link" id="twitter_link"
                                 placeholder="Twitter Link" maxlength="100" value="{{ old('twitter_link', $cmsSettings['twitter_link'] ?? '') }}">
                             @error('twitter_link')
@@ -79,10 +79,94 @@
                         </div>
                         <div class="col-md-6">
                             <label for="youtube_link"
-                                class="form-label fw-semibold text-primary-light text-sm mb-8">Youtube Link <span class="text-danger-600">*</span></label>
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Youtube Link <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('youtube_link') is-invalid @enderror" name="youtube_link" id="youtube_link"
                                 placeholder="Youtube Link" maxlength="100" value="{{ old('youtube_link', $cmsSettings['youtube_link'] ?? '') }}">
                             @error('youtube_link')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="version"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Site Version <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('version') is-invalid @enderror" name="version" id="version"
+                                placeholder="Site Version" maxlength="100" value="{{ old('version', $cmsSettings['version'] ?? '') }}">
+                            @error('version')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
+                            <p class="fw-medium">Mail Configuration (Update with Caution):<p>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mail_mailer"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Mailer <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_mailer') is-invalid @enderror" name="mail_mailer" id="mail_mailer"
+                                placeholder="Mail Mailer" maxlength="100" value="{{ env('MAIL_MAILER') }}">
+                            @error('mail_mailer')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mail_host"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Host <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_host') is-invalid @enderror" name="mail_host" id="mail_host"
+                                placeholder="Mail Host" maxlength="100" value="{{ env('MAIL_HOST') }}">
+                            @error('mail_host')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- <div class="col-md-6">
+                            <label for="mail_port"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Port <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_port') is-invalid @enderror" name="mail_port" id="mail_port"
+                                placeholder="Mail Port" maxlength="100" value="{{ env('MAIL_PORT') }}" disabled>
+                            @error('mail_port')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+                        <div class="col-md-6">
+                            <label for="mail_userName"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Username <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_userName') is-invalid @enderror" name="mail_userName" id="mail_userName"
+                                placeholder="Mail Username" maxlength="100" value="{{ env('MAIL_USERNAME') }}">
+                            @error('mail_userName')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mail_password"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Password <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_password') is-invalid @enderror" name="mail_password" id="mail_password"
+                                placeholder="Mail Password" maxlength="100" value="{{ env('MAIL_PASSWORD') }}">
+                            @error('mail_password')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        {{-- <div class="col-md-6">
+                            <label for="mail_encryption"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail Encryption <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_encryption') is-invalid @enderror" name="mail_encryption" id="mail_encryption"
+                                placeholder="Mail Encryption" maxlength="100" value="{{ env('MAIL_ENCRYPTION') }}" disabled>
+                            @error('mail_encryption')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div> --}}
+                        <div class="col-md-6">
+                            <label for="mail_from_address"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail From Address <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_from_address') is-invalid @enderror" name="mail_from_address" id="mail_from_address"
+                                placeholder="Mail From Address" maxlength="100" value="{{ env('MAIL_FROM_ADDRESS') }}">
+                            @error('mail_from_address')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="mail_from_name"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Mail From Name <span class="text-danger-600"></span></label>
+                            <input type="text" class="form-control radius-8 @error('mail_from_name') is-invalid @enderror" name="mail_from_name" id="mail_from_name"
+                                placeholder="Mail From Name" maxlength="100" value="{{ env('MAIL_FROM_NAME') }}">
+                            @error('mail_from_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
@@ -132,7 +216,31 @@
                         },
                         favicon_logo: {
                             extension: "png|jpg|jpeg"
-                        }
+                        },
+                        mail_mailer: {
+                            required: true,
+                        },
+                        mail_host: {
+                            required: true,
+                        },
+                        mail_port: {
+                            required: true,
+                        },
+                        mail_userName: {
+                            required: true,
+                        },
+                        mail_password: {
+                            required: true,
+                        },
+                        mail_encryption: {
+                            required: true,
+                        },
+                        mail_from_address: {
+                            required: true,
+                        },
+                        mail_from_name: {
+                            required: true,
+                        },
                     },
                     messages: {
                         facebook_link: {
@@ -152,7 +260,31 @@
                         },
                         favicon_logo: {
                             extension: "Please upload a valid image (png, jpg, jpeg)."
-                        }
+                        },
+                        mail_mailer: {
+                            required: "Please enter mail mailer",
+                        },
+                        mail_host: {
+                            required: "Please enter mail host",
+                        },
+                        mail_port: {
+                            required: "Please enter mail port",
+                        },
+                        mail_userName: {
+                            required: "Please enter mail username",
+                        },
+                        mail_password: {
+                            required: "Please enter mail password",
+                        },
+                        mail_encryption: {
+                            required: "Please enter mail encryption",
+                        },
+                        mail_from_address: {
+                            required: "Please enter mail from address",
+                        },
+                        mail_from_name: {
+                            required: "Please enter mail from name",
+                        },
                     },
                     submitHandler: function(form) {
                         console.log('Form is valid, submitting...');

@@ -87,9 +87,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LMS</title>
+    <title>Nexada</title>
     @php
-        $cmsSetting = App\Models\CmsSettting::pluck('value', 'key')->toArray()
+        $cmsSetting = App\Models\CmsSettting::pluck('value', 'key')->toArray();
     @endphp
     <link rel="icon" type="image/png" href="{{ asset($cmsSetting['favicon_logo']) ?? '' }}" sizes="16x16">
     <!-- remix icon font css  -->
@@ -141,8 +141,10 @@
                         <span class="icon top-50 translate-middle-y">
                             <iconify-icon icon="mage:email"></iconify-icon>
                         </span>
-                        <input type="email" id="email" class="form-control h-56-px bg-neutral-50 radius-12 @error('email') is-invalid @enderror" name="email"
-                        value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Email">
+                        <input type="email" id="email"
+                            class="form-control h-56-px bg-neutral-50 radius-12 @error('email') is-invalid @enderror"
+                            name="email" value="{{ old('email') }}" required autocomplete="email" autofocus
+                            placeholder="Email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -154,24 +156,27 @@
                             <span class="icon top-50 translate-middle-y">
                                 <iconify-icon icon="solar:lock-password-outline"></iconify-icon>
                             </span>
-                            <input type="password" class="form-control h-56-px bg-neutral-50 radius-12 @error('password') is-invalid @enderror"
-                                id="your-password" name="password"
-                                required autocomplete="current-password" placeholder="Password">
+                            <input type="password"
+                                class="form-control h-56-px bg-neutral-50 radius-12 @error('password') is-invalid @enderror"
+                                id="your-password" name="password" required autocomplete="current-password"
+                                placeholder="Password">
                         </div>
                         <span
                             class="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light"
                             data-toggle="#your-password"></span>
                     </div>
-                    {{-- <div class="">
+                    <div class="">
                         <div class="d-flex justify-content-between gap-2">
                             <div class="form-check style-check d-flex align-items-center">
-                                <input class="form-check-input border border-neutral-300" type="checkbox"
+                                {{-- <input class="form-check-input border border-neutral-300" type="checkbox"
                                     value="" id="remeber">
-                                <label class="form-check-label" for="remeber">Remember me </label>
+                                <label class="form-check-label" for="remeber">Remember me </label> --}}
                             </div>
-                            <a href="javascript:void(0)" class="text-primary-600 fw-medium">Forgot Password?</a>
+                            {{-- @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}" class="text-primary-600 fw-medium">Forgot Password?</a>
+                            @endif --}}
                         </div>
-                    </div> --}}
+                    </div>
 
                     <button type="submit" class="btn btn-primary text-sm btn-sm px-12 py-16 w-100 radius-12 mt-32">
                         Sign In</button>
