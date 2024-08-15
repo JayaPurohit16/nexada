@@ -97,9 +97,14 @@ class TeacherController extends Controller
                     'second_name'     => $user->second_name,
                     'password' => $randomUserPassword,
                 ];
-                Mail::to($user->email)->send(new SendPasswordEmail($data));
+                try {
+                    Mail::to($user->email)->send(new SendPasswordEmail($data));
+                } catch (Exception $mailException) {
+                    DB::rollBack();
+                    Log::error('Mail error: ' . $mailException->getMessage());
+                    return redirect()->back()->with('error', 'Failed to send email. Please try again.');
+                }
             }
-            
             $teacher = new Teacher();
             $teacher->user_id = $user->id;
             $teacher->instruments_can_teach = implode(',',$request->instrument_id);
