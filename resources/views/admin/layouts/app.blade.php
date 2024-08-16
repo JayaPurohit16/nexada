@@ -23,19 +23,21 @@
         <div class="container mt-3">
             <!-- Display error message -->
             @if (Session::has('error'))
-                <div class="alert alert-danger alert-dismissible fade show justify-content-around" role="alert">
-                    {{ Session::get('error') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    </button>
+                <div class="alert alert-danger bg-danger-100 text-danger-600 border-danger-100 px-24 py-11 mb-0 fw-semibold text-lg radius-8" role="alert">
+                    <div class="d-flex align-items-center justify-content-between text-lg">
+                        {{ Session::get('error') }} 
+                        <button class="remove-button text-danger-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+                    </div>
                 </div>
             @endif
     
             <!-- Display success message -->
             @if (Session::has('success'))
-                <div class="alert alert-success alert-dismissible fade show d-flex justify-content-between" role="alert">
-                    {{ Session::get('success') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    </button>
+                <div class="alert alert-success bg-success-100 text-success-600 border-success-100 px-24 py-11 mb-0 fw-semibold text-lg radius-8" role="alert">
+                    <div class="d-flex align-items-center justify-content-between text-lg">
+                        {{ Session::get('success') }}
+                        <button class="remove-button text-success-600 text-xxl line-height-1"> <iconify-icon icon="iconamoon:sign-times-light" class="icon"></iconify-icon></button>
+                    </div>
                 </div>
             @endif
         </div>

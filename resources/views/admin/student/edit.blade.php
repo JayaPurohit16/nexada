@@ -214,6 +214,14 @@
     <script>
             $(document).ready(function() {
 
+                function getDatePicker (receiveID) {
+                    flatpickr(receiveID, {
+                        enableTime: false,
+                        dateFormat: "Y/m/d",
+                    });
+                }
+                getDatePicker('#date_of_birth');
+
                 var today = new Date().toISOString().split('T')[0];
                 $('#date_of_birth').attr('max', today);
 

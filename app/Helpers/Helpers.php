@@ -38,7 +38,11 @@ function siteVersion()
 
     if ($siteVersion === null) {
         $version = CmsSettting::where('key', 'version')->first();
-        $siteVersion = $version->value ? $version->value : 'v1.0.0';
+        if($version){
+            $siteVersion = $version->value ? $version->value : 'v1.0.0';
+        } else {
+            $siteVersion = 'v1.0.0';
+        }
     }
     return $siteVersion;
 }
