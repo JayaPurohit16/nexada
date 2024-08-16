@@ -81,19 +81,29 @@
                                 <div class="row gy-4">
                                     <div class="col-md-3">
                                         <label for="price" class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span class="text-danger-600">*</span></label>
-                                        <input type="number" class="form-control radius-8 price @error('price.*') is-invalid @enderror" name="price[]" id="price" placeholder="Price" value="0" min="0" max="100000">
+                                        <input type="number" class="form-control radius-8 price @error('price.*') is-invalid @enderror" name="price[]" id="price" placeholder="Price" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                        onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100000">
                                         @error('price.*')
                                             <div class="invalid-feedback">{{ $message }}</div>
                                         @enderror
                                     </div>
                 
                                     <div class="col-md-3">
-                                        <label for="billing_period" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period <span class="text-danger-600">*</span></label>
+                                        <label for="billing_period" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period (In Months) <span class="text-danger-600">*</span></label>
                                         <select name="billing_period[]" id="billing_period" class="form-control billing_period">
-                                            <option value="">Select Billing Period</option>
-                                            <option value="0">Monthly</option>
-                                            <option value="1">Quarterly</option>
-                                            <option value="2">Yearly</option>
+                                            <option value="">Billing Period (In Months)</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
                                         </select>
                                         @error('billing_period.*')
                                             <div class="invalid-feedback">{{ $message }}</div>
@@ -333,22 +343,33 @@
                                 <div class="row gy-4">
                                     <div class="col-md-3">
                                         <label for="price_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span class="text-danger-600">*</span></label>
-                                        <input type="number" class="form-control radius-8 price price-field" name="price[]" id="price_${counter}" placeholder="Price" value="0" min="0" max="100000">
+                                        <input type="number" class="form-control radius-8 price price-field" name="price[]" id="price_${counter}" placeholder="Price" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100000">
                                     </div>
 
                                     <div class="col-md-3">
-                                        <label for="billing_period_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period <span class="text-danger-600">*</span></label>
+                                        <label for="billing_period_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period (In Months) <span class="text-danger-600">*</span></label>
                                         <select name="billing_period[]" id="billing_period_${counter}" class="form-control billing-period-field billing_period">
-                                            <option value="">Select Billing Period</option>
-                                            <option value="0">Monthly</option>
-                                            <option value="1">Quarterly</option>
-                                            <option value="2">Yearly</option>
+                                            <option value="">Billing Period (In Months)</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
                                         </select>
                                     </div>
 
                                     <div class="col-md-3">
                                         <label for="discount_${counter}" class="form-label fw-semibold text-primary-light text-sm mb-8">Discount (in %) <span class="text-danger-600">*</span></label>
-                                        <input type="number" class="form-control radius-8 discount-field discount" name="discount[]" id="discount_${counter}" placeholder="Discount (in %)" value="0" min="0" max="100">
+                                        <input type="number" class="form-control radius-8 discount-field discount" name="discount[]" id="discount_${counter}" placeholder="Discount (in %)" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100">
                                     </div>
                                     <div class="col-md-3">
                                         <button type="button" class="btn btn-outline-danger remove-pricing-group" style="margin-top: 33px">Remove</button>

@@ -177,6 +177,38 @@
                                                     @enderror
                                                 </div>
                                             </div>
+                                            <div class="col-md-6">
+                                                <label for="location_id"
+                                                    class="form-label fw-semibold text-primary-light text-sm mb-8">Location <span class="text-danger-600">*</span></label>
+                                                    <select name="location_id" id="location_id" class="form-control">
+                                                        @if (isset($locations))
+                                                            @foreach ($locations as $location)
+                                                                <option value="{{ $location->id }}" @if ($location->id == $teacher->location_id) selected @endif>{{ $location->name }}</option>
+                                                            @endforeach
+                                                        @endif
+                                                </select>
+                                                @error('location_id')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label for="instrument_id"
+                                                    class="form-label fw-semibold text-primary-light text-sm mb-8">Instrument/Instruments Can Teach <span class="text-danger-600">*</span></label>
+                                                <select name="instrument_id[]" id="instrument_id" class="form-control select2" multiple="multiple">
+                                                    @if(isset($instruments))
+                                                        @foreach ($instruments as $instrument)
+                                                            <option value="{{ $instrument->id }}"
+                                                                {{ in_array($instrument->id, $selectedInstruments) ? 'selected' : '' }}>
+                                                                {{ $instrument->name }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                                </select>
+                                                @error('instrument_id[]')
+                                                    <div class="invalid-feedback">{{ $message }}</div>
+                                                @enderror
+                                                <label id="instrument_id-error" class="error" for="instrument_id"></label>
+                                            </div>
                                             {{-- <div class="col-sm-6">
                                                 <div class="mb-20">
                                                     <label for="depart"
@@ -521,5 +553,10 @@
         // Call the function
         initializePasswordToggle('.toggle-password');
         // ========================= Password Show Hide Js End ===========================
+
+        $('.select2').select2({
+            placeholder: "Select Instrument(s)",
+            allowClear: true
+        });
     </script>
 @endsection

@@ -89,10 +89,17 @@ class StudentController extends Controller
                 $user->save();
                 if($user && $user->email != null){
                     $data = [
-                        'name'     => $user->first_name,
+                        'first_name'     => $user->first_name,
+                        'second_name'     => $user->second_name,
                         'password' => $randomUserPassword,
                     ];
-                    Mail::to($user->email)->send(new SendPasswordEmail($data));
+                    try {
+                        Mail::to($user->email)->send(new SendPasswordEmail($data));
+                    } catch (Exception $mailException) {
+                        DB::rollBack();
+                        Log::error('Mail error: ' . $mailException->getMessage());
+                        return redirect()->back()->with('error', 'Failed to send email. Please try again.');
+                    }
                 }
 
                 $student = new Student();
@@ -126,10 +133,17 @@ class StudentController extends Controller
 
                     if($parentUser){
                         $data = [
-                            'name'     => $parentUser->first_name,
+                            'first_name'     => $parentUser->first_name,
+                            'second_name'     => $parentUser->second_name,
                             'password' => $randomParentPassword,
                         ];
-                        Mail::to($parentUser->email)->send(new SendPasswordEmail($data));
+                        try {
+                            Mail::to($parentUser->email)->send(new SendPasswordEmail($data));
+                        } catch (Exception $mailException) {
+                            DB::rollBack();
+                            Log::error('Mail error: ' . $mailException->getMessage());
+                            return redirect()->back()->with('error', 'Failed to send email. Please try again.');
+                        }
                     }
 
                     $parent = new UserParent();
@@ -194,10 +208,17 @@ class StudentController extends Controller
                     $randomUserPassword = Str::random(10);
                     $user->password = Hash::make($randomUserPassword);
                     $data = [
-                        'name'     => $user->first_name,
+                        'first_name'     => $user->first_name,
+                        'second_name'     => $user->second_name,
                         'password' => $randomUserPassword,
                     ];
-                    Mail::to($request->email)->send(new SendPasswordEmail($data));
+                    try {
+                        Mail::to($request->email)->send(new SendPasswordEmail($data));
+                    } catch (Exception $mailException) {
+                        DB::rollBack();
+                        Log::error('Mail error: ' . $mailException->getMessage());
+                        return redirect()->back()->with('error', 'Failed to send email. Please try again.');
+                    }
                 }
                 $user->first_name = isset($request->first_name) ? $request->first_name : '';
                 $user->second_name = isset($request->second_name) ? $request->second_name : '';
@@ -243,10 +264,17 @@ class StudentController extends Controller
                     $parentUser->save();
 
                     $data = [
-                        'name'     => $parentUser->first_name,
+                        'first_name'     => $parentUser->first_name,
+                        'second_name'     => $parentUser->second_name,
                         'password' => $randomParentPassword,
                     ];
-                    Mail::to($parentUser->email)->send(new SendPasswordEmail($data));
+                    try {
+                        Mail::to($parentUser->email)->send(new SendPasswordEmail($data));
+                    } catch (Exception $mailException) {
+                        DB::rollBack();
+                        Log::error('Mail error: ' . $mailException->getMessage());
+                        return redirect()->back()->with('error', 'Failed to send email. Please try again.');
+                    }
                 } else {
                     $parentUser->first_name = isset($request->parent_first_name) ? $request->parent_first_name : '';
                     $parentUser->second_name = isset($request->parent_second_name) ? $request->parent_second_name : '';

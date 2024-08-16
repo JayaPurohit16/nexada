@@ -1,18 +1,14 @@
+@php
+    $canViewUsers = auth()->user()->can('teacher-list') || auth()->user()->can('student-list') || auth()->user()->can('admin-list');
+@endphp
+
 <aside class="sidebar">
     <button type="button" class="sidebar-close-btn">
         <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
     </button>
     <div>
-        @php
-            $cmsSetting = App\Models\CmsSettting::pluck('value', 'key')->toArray()
-        @endphp
         <a href="{{ route('admin.dashboard') }}" class="sidebar-logo">
-            {{-- <h3>LMS</h2> --}}
-                @if($cmsSetting['website_logo'])
-                    <img src="{{ asset($cmsSetting['website_logo']) }}" alt="site logo" class="light-logo">
-                @else
-                    <h3>LMS</h2>
-                @endif
+                    <img src="{{ asset(appLogoUrl()) }}" alt="site logo" class="light-logo">
             {{-- <img src="{{ asset('assets/images/logo-light.png') }}" alt="site logo" class="dark-logo">
             <img src="{{ asset('assets/images/logo-icon.png') }}" alt="site logo" class="logo-icon"> --}}
         </a>
@@ -256,31 +252,7 @@
                     <span>Widgets</span>
                 </a>
             </li> --}}
-            {{-- <li class="dropdown">
-                <a href="javascript:void(0)">
-                    <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
-                    <span>Users</span>
-                </a>
-                <ul class="sidebar-submenu">
-                    <li>
-                        <a href="users-list.html"><i
-                                class="ri-circle-fill circle-icon text-primary-600 w-auto"></i> Users List</a>
-                    </li>
-                    <li>
-                        <a href="users-grid.html"><i
-                                class="ri-circle-fill circle-icon text-warning-main w-auto"></i> Users Grid</a>
-                    </li>
-                    <li>
-                        <a href="add-user.html"><i class="ri-circle-fill circle-icon text-info-main w-auto"></i>
-                            Add User</a>
-                    </li>
-                    <li>
-                        <a href="view-profile.html"><i
-                                class="ri-circle-fill circle-icon text-danger-main w-auto"></i> View Profile</a>
-                    </li>
-                </ul>
-            </li> --}}
-
+            
             {{-- <li class="sidebar-menu-group-title">Application</li> --}}
 
             {{-- <li class="dropdown">
@@ -333,55 +305,81 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('admin.teacher.index') }}" class="{{ request()->routeIs('admin.teacher.index', 'admin.teacher.create', 'admin.teacher.edit') ? 'active-page' : '' }}">
+            @if($canViewUsers)
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="{{ request()->routeIs('admin.teacher.index', 'admin.teacher.create', 'admin.teacher.edit', 'admin.student.index', 'admin.student.create', 'admin.student.edit', 'admin.admin.index', 'admin.admin.create', 'admin.admin.edit') ? 'active-page' : '' }}">
                     <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
-                    <span>Teachers</span>
+                    <span>Users</span>
                 </a>
+                <ul class="sidebar-submenu" style="{{ request()->routeIs('admin.teacher.index', 'admin.teacher.create', 'admin.teacher.edit', 'admin.student.index', 'admin.student.create', 'admin.student.edit', 'admin.admin.index', 'admin.admin.create', 'admin.admin.edit') ? 'display:block;' : '' }}">
+                    @can('teacher-list')
+                        <li>
+                            <a href="{{ route('admin.teacher.index') }}" class="{{ request()->routeIs('admin.teacher.index', 'admin.teacher.create', 'admin.teacher.edit') ? 'active-page' : '' }}">
+                                <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                                <span>Teachers</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('student-list')
+                        <li>
+                            <a href="{{ route('admin.student.index') }}" class="{{ request()->routeIs('admin.student.index', 'admin.student.create', 'admin.student.edit') ? 'active-page' : '' }}">
+                                <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                                <span>Students</span>
+                            </a>
+                        </li>
+                    @endcan
+                    @can('admin-list')
+                        <li>
+                            <a href="{{ route('admin.admin.index') }}" class="{{ request()->routeIs('admin.admin.index', 'admin.admin.create', 'admin.admin.edit') ? 'active-page' : '' }}">
+                                <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
+                                <span>Admins</span>
+                            </a>
+                        </li>
+                    @endcan
+                </ul>
             </li>
-            <li>
-                <a href="{{ route('admin.student.index') }}" class="{{ request()->routeIs('admin.student.index', 'admin.student.create', 'admin.student.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
-                    <span>Students</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.admin.index') }}" class="{{ request()->routeIs('admin.admin.index', 'admin.admin.create', 'admin.admin.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="flowbite:users-group-outline" class="menu-icon"></iconify-icon>
-                    <span>Admins</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.subscription.index') }}" class="{{ request()->routeIs('admin.subscription.index', 'admin.subscription.create', 'admin.subscription.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="streamline:subscription-cashflow" class="menu-icon"></iconify-icon>
-                    <span>Subcriptions</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.location.index') }}" class="{{ request()->routeIs('admin.location.index', 'admin.location.create', 'admin.location.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="mingcute:location-line" class="menu-icon"></iconify-icon>
-                    <span>Locations</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.instrument.index') }}" class="{{ request()->routeIs('admin.instrument.index', 'admin.instrument.create', 'admin.instrument.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="heroicons:musical-note-20-solid" class="menu-icon"></iconify-icon>
-                    <span>Instruments</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.skill.index') }}" class="{{ request()->routeIs('admin.skill.index', 'admin.skill.create', 'admin.skill.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="carbon:skill-level-advanced" class="menu-icon"></iconify-icon>
-                    <span>Skills</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles.index', 'admin.roles.create', 'admin.roles.edit') ? 'active-page' : '' }}">
-                    <iconify-icon icon="oui:app-users-roles" class="menu-icon"></iconify-icon>
-                    <span>Roles</span>
-                </a>
-            </li>
-            <li>
+            @endif
+            @can('subscription-list')
+                <li>
+                    <a href="{{ route('admin.subscription.index') }}" class="{{ request()->routeIs('admin.subscription.index', 'admin.subscription.create', 'admin.subscription.edit') ? 'active-page' : '' }}">
+                        <iconify-icon icon="streamline:subscription-cashflow" class="menu-icon"></iconify-icon>
+                        <span>Subcriptions</span>
+                    </a>
+                </li>
+            @endcan
+            @can('location-list')
+                <li>
+                    <a href="{{ route('admin.location.index') }}" class="{{ request()->routeIs('admin.location.index', 'admin.location.create', 'admin.location.edit') ? 'active-page' : '' }}">
+                        <iconify-icon icon="mingcute:location-line" class="menu-icon"></iconify-icon>
+                        <span>Locations</span>
+                    </a>
+                </li>
+            @endcan
+            @can('instrument-list')
+                <li>
+                    <a href="{{ route('admin.instrument.index') }}" class="{{ request()->routeIs('admin.instrument.index', 'admin.instrument.create', 'admin.instrument.edit') ? 'active-page' : '' }}">
+                        <iconify-icon icon="heroicons:musical-note-20-solid" class="menu-icon"></iconify-icon>
+                        <span>Instruments</span>
+                    </a>
+                </li>
+            @endcan
+            @can('skill-list')
+                <li>
+                    <a href="{{ route('admin.skill.index') }}" class="{{ request()->routeIs('admin.skill.index', 'admin.skill.create', 'admin.skill.edit') ? 'active-page' : '' }}">
+                        <iconify-icon icon="carbon:skill-level-advanced" class="menu-icon"></iconify-icon>
+                        <span>Skills</span>
+                    </a>
+                </li>
+            @endcan
+            @can('role-list')
+                <li>
+                    <a href="{{ route('admin.roles.index') }}" class="{{ request()->routeIs('admin.roles.index', 'admin.roles.create', 'admin.roles.edit') ? 'active-page' : '' }}">
+                        <iconify-icon icon="oui:app-users-roles" class="menu-icon"></iconify-icon>
+                        <span>Roles</span>
+                    </a>
+                </li>
+            @endcan
+            {{-- <li>
                 <a href="{{ route('admin.termsAndCondition.index') }}">
                     <iconify-icon icon="iconoir:privacy-policy" class="menu-icon"></iconify-icon>
                     <span>Terms & Conditions</span>
@@ -392,13 +390,15 @@
                     <iconify-icon icon="iconoir:privacy-policy" class="menu-icon"></iconify-icon>
                     <span>Privacy & Policy</span>
                 </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.CmsSetting.index') }}">
-                    <iconify-icon icon="icon-park-outline:setting-two" class="menu-icon"></iconify-icon>
-                    <span>CMS Setting</span>
-                </a>
-            </li>
+            </li> --}}
+            @can('cms_setting-list')
+                <li>
+                    <a href="{{ route('admin.CmsSetting.index') }}">
+                        <iconify-icon icon="icon-park-outline:setting-two" class="menu-icon"></iconify-icon>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            @endcan
             {{-- <li class="dropdown">
                 <a href="javascript:void(0)">
                     <iconify-icon icon="icon-park-outline:setting-two" class="menu-icon"></iconify-icon>
@@ -438,4 +438,8 @@
             </li> --}}
         </ul>
     </div>
+    <div class="sidebar-version">
+        <span>{{ siteVersion() }}</span>
+    </div>
+    
 </aside>

@@ -18,12 +18,30 @@ class SubscriptionType extends Model
     public function getBillingPeriodNameAttribute()
     {
         switch ($this->attributes['billing_period']) {
-            case "0":
-                return 'Monthly';
             case "1":
-                return 'Quarterly';
+                return '1 Month';
             case "2":
-                return 'Yearly';
+                return '2 Months';
+            case "3":
+                return '3 Months';
+            case "4":
+                return '4 Months';
+            case "5":
+                return '5 Months';
+            case "6":
+                return '6 Months';
+            case "7":
+                return '7 Months';
+            case "8":
+                return '8 Months';
+            case "9":
+                return '9 Months';
+            case "10":
+                return '10 Months';
+            case "11":
+                return '11 Months';
+            case "12":
+                return '12 Months';
             default:
                 return '';
         }

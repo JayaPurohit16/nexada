@@ -21,6 +21,10 @@
 <script src="{{ asset('assets/js/app.js') }}"></script>
 
 <script src="{{ asset('assets/js/homeTwoChart.js') }}"></script>
+<!-- Calendar -->
+<script src="{{asset('assets/js/full-calendar.js')}}"></script>
+<!-- flatpicker -->
+<script src="{{asset('assets/js/flatpickr.js')}}"></script>
 
 <!-- Text editor -->
 <script src="{{ asset('assets/js/editor.highlighted.min.js') }}"></script>
@@ -40,4 +44,8 @@
     setTimeout(function() {
         $('.alert').remove();
     }, 3000);
+
+    $('.remove-button').on('click', function() {
+        $(this).closest('.alert').addClass('d-none')
+    });
 </script>

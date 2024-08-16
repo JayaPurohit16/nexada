@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Instrument;
+use App\Models\Location;
+use App\Models\Teacher;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -42,6 +45,13 @@ class HomeController extends Controller
     {
         try {
             $user = Auth::user();
+            $teacher = Teacher::where('user_id',$user->id)->first();
+            if($user->hasRole('Teacher') && $teacher){
+                $locations = Location::get();
+                $instruments = Instrument::get();
+                $selectedInstruments = explode(',', $teacher->instruments_can_teach);
+                return view('teacher.profile.profile',compact('user','locations','teacher','instruments','selectedInstruments'));
+            }
             return view('admin.profile',compact('user'));
         } catch (Exception $e) {
             Log::info('admin profile Error---' . $e->getMessage());
@@ -84,6 +94,13 @@ class HomeController extends Controller
                 }
 
                 $user->save();
+
+                $teacher = Teacher::where('user_id',$user->id)->first();
+                if($teacher){
+                    $teacher->instruments_can_teach = implode(',',$request->instrument_id);
+                    $teacher->location_id = $request->location_id;
+                    $teacher->update();
+                }
                 return redirect()->back()->with('success','Profile updated successfully');
             } else {
                 return redirect()->back()->with('error','User not found'); 

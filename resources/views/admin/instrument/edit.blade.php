@@ -56,7 +56,7 @@
                             @enderror
                             <div class="avatar-upload mt-16">
                                 <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ (!empty($instrument->image)) ? asset($instrument->image) : asset('assets/images/instrument-image.jpg') }}');"></div>
+                                    <div id="previewImage1" style="background-image: url('{{ (!empty($instrument->image) && file_exists($instrument->image)) ? asset($instrument->image) : asset('assets/images/instrument-image.jpg') }}');"></div>
                                 </div>
                             </div>
                         </div>

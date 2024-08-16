@@ -30,7 +30,7 @@
                             <label for="first_name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">First Name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('first_name') is-invalid @enderror" name="first_name" id="first_name"
-                                placeholder="First Name" maxlength="100">
+                                placeholder="First Name" value="{{ old('first_name') }}" maxlength="100">
                             @error('first_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -40,7 +40,7 @@
                             <label for="second_name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Second Name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('second_name') is-invalid @enderror" name="second_name" id="second_name"
-                                placeholder="Second Name" maxlength="100">
+                                placeholder="Second Name" value="{{ old('second_name') }}" maxlength="100">
                             @error('second_name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -52,7 +52,7 @@
                                     class="form-label fw-semibold text-primary-light text-sm mb-8">Email
                                     <span class="text-danger-600">*</span></label>
                                 <input type="email" class="form-control radius-8 @error('email') is-invalid @enderror" name="email"
-                                    id="email" placeholder="Email address" maxlength="100">
+                                    id="email" placeholder="Email address" value="{{ old('email') }}" maxlength="100">
                                     @error('email')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
@@ -63,7 +63,7 @@
                             <label for="phone"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Contact Number <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('phone') is-invalid @enderror" name="phone" id="phone"
-                                placeholder="Contact Number" minlength="10" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                placeholder="Contact Number" value="{{ old('phone') }}" minlength="10" maxlength="10" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
                             @error('phone')
                                 <div class="invalid-feedback">{{ $message }}</div>
@@ -97,17 +97,18 @@
                         </div> --}}
 
                         <div class="col-md-6">
-                            <label for="imageUpload" class="form-label fw-semibold text-secondary-light text-md mb-8">Profile Picture <span class="text-danger-600"></span>
-                                <span class="text-secondary-light fw-normal"></span></label>
-                            <input type="file" name="image" class="form-control radius-8 @error('image') is-invalid @enderror" id="imageUpload" accept=".png, .jpg, .jpeg">
-                            @error('image')
+                            <label for="location_id"
+                                class="form-label fw-semibold text-primary-light text-sm mb-8">Location <span class="text-danger-600">*</span></label>
+                                <select name="location_id" id="location_id" class="form-control">
+                                    @if (isset($locations))
+                                        @foreach ($locations as $location)
+                                            <option value="{{ $location->id }}">{{ $location->name }}</option>
+                                        @endforeach
+                                    @endif
+                            </select>
+                            @error('location_id')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="avatar-upload mt-16">
-                                <div class="avatar-preview style-two">
-                                    <div id="previewImage1" style="background-image: url('{{ asset('assets/images/user-grid/user-grid-img13.png') }}');"></div>
-                                </div>
-                            </div>
                         </div>
 
                         <div class="col-md-6">
@@ -124,6 +125,20 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                             <label id="instrument_id-error" class="error" for="instrument_id"></label>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="imageUpload" class="form-label fw-semibold text-secondary-light text-md mb-8">Profile Picture <span class="text-danger-600"></span>
+                                <span class="text-secondary-light fw-normal"></span></label>
+                            <input type="file" name="image" class="form-control radius-8 @error('image') is-invalid @enderror" id="imageUpload" accept=".png, .jpg, .jpeg">
+                            @error('image')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                            <div class="avatar-upload mt-16">
+                                <div class="avatar-preview style-two">
+                                    <div id="previewImage1" style="background-image: url('{{ asset('assets/images/user-grid/user-grid-img13.png') }}');"></div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex align-items-center justify-content-center gap-3">

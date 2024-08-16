@@ -415,7 +415,7 @@
                 <div class="dropdown">
                     <button class="d-flex justify-content-center align-items-center rounded-circle"
                         type="button" data-bs-toggle="dropdown">
-                        <img src="{{ asset(Auth::user()->profile_image ?? 'assets/images/user.png') }}" alt="image"
+                        <img src="{{ (Auth::user()->profile_image) && file_exists(Auth::user()->profile_image) ? asset(Auth::user()->profile_image) :  asset('assets/images/user.png') }}" alt="image"
                             class="w-40-px h-40-px object-fit-cover rounded-circle">
                     </button>
                     <div class="dropdown-menu to-top dropdown-menu-sm">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\CmsSettting;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Log;
 
@@ -39,6 +40,12 @@ class CMSSettingController extends Controller
             'instagram_link' => 'nullable|url',
             'twitter_link' => 'nullable|url',
             'youtube_link' => 'nullable|url',
+            'mail_mailer' => 'required|string',
+            'mail_host' => 'required|string',
+            'mail_userName' => 'required|string',
+            'mail_password' => 'required|string',
+            'mail_from_address' => 'required|string',
+            'mail_from_name' => 'required|string',
         ]);
 
         try {
@@ -71,12 +78,41 @@ class CMSSettingController extends Controller
                 'instagram_link' => $request->input('instagram_link'),
                 'twitter_link' => $request->input('twitter_link'),
                 'youtube_link' => $request->input('youtube_link'),
+                'version' => $request->input('version'),
             ];
     
             foreach ($socialLinks as $key => $value) {
                 CmsSettting::updateOrCreate(['key' => $key], ['value' => $value]);
             }
-    
+
+            $path = base_path('.env');
+
+            $content = file_get_contents($path);
+
+            $updates = [
+                'MAIL_MAILER' => $request->mail_mailer,
+                'MAIL_HOST' => $request->mail_host,
+                'MAIL_USERNAME' => $request->mail_userName,
+                'MAIL_PASSWORD' => $request->mail_password,
+                'MAIL_FROM_ADDRESS' => $request->mail_from_address,
+                'MAIL_FROM_NAME' => $request->mail_from_name,
+            ];
+
+            foreach ($updates as $key => $value) {
+                if ($value !== null) {
+                    if (preg_match("/^{$key}=/m", $content)) {
+                        $content = preg_replace("/^{$key}=.*/m", "{$key}={$value}", $content);
+                    } else {
+                        $content .= "\n{$key}={$value}";
+                    }
+                }
+            }
+
+            file_put_contents($path, $content);
+
+            Artisan::call('optimize:clear');
+            Artisan::call('cache:clear');
+            Artisan::call('config:clear');
             return redirect()->route('admin.CmsSetting.index')->with('success', 'Settings updated successfully.');
         } catch (Exception $e) {
             Log::error('CMS Settings Update Error: ' . $e->getMessage());

@@ -7,6 +7,7 @@ use App\Mail\SendPasswordEmail;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
@@ -56,6 +57,7 @@ class AdminController extends Controller
             'email' => 'required|email|unique:users,email',
         ]);
         try {
+            DB::beginTransaction();
             $user = new User();
             $user->first_name = isset($request->first_name) ? $request->first_name : '';
             $user->second_name = isset($request->second_name) ? $request->second_name : '';
@@ -73,13 +75,22 @@ class AdminController extends Controller
 
             if($user){
                 $data = [
-                    'name'     => $user->first_name,
+                    'first_name'     => $user->first_name,
+                    'second_name'     => $user->second_name,
                     'password' => $randomUserPassword,
                 ];
-                Mail::to($user->email)->send(new SendPasswordEmail($data));
+                try {
+                    Mail::to($user->email)->send(new SendPasswordEmail($data));
+                } catch (Exception $mailException) {
+                    DB::rollBack();
+                    Log::error('Mail error: ' . $mailException->getMessage());
+                    return redirect()->back()->with('error', 'Failed to send email. Please try again.   ');
+                }
             }
+            DB::commit();
             return redirect()->route('admin.admin.index')->with('success','Admin created sucessfully'); 
         } catch (Exception $e) {
+            DB::rollBack();
             Log::info('admin admin store Error---' . $e->getMessage());
             return redirect()->back()->with('error', 'Something went wrong');     
         }

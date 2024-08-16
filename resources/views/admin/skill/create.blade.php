@@ -30,7 +30,7 @@
                             <label for="name"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Name <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('name') is-invalid @enderror" name="name" id="name"
-                                placeholder="Name" maxlength="100">
+                                placeholder="Name" value="{{ old('name') }}" maxlength="100">
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -59,7 +59,7 @@
                             <label for="category"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Category <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('category') is-invalid @enderror" name="category" id="category"
-                                placeholder="Category" maxlength="100">
+                                placeholder="Category" value="{{ old('category') }}" maxlength="100">
                             @error('category')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -69,7 +69,7 @@
                             <label for="description"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Description <span class="text-danger-600">*</span></label>
                             <textarea type="text" class="form-control radius-8 @error('description') is-invalid @enderror" name="description" id="description"
-                                placeholder="Description" maxlength="1000"></textarea>
+                                placeholder="Description" maxlength="1000">{{ old('description') }}</textarea>
                             @error('description')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
