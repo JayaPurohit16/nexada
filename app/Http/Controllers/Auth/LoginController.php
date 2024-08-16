@@ -53,7 +53,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
-        if (!$user->hasRole(['Admin', 'Super Admin', 'Teacher'])) {
+        if (!$user->hasRole(['Admin', 'Super Admin', 'Teacher', 'Desk'])) {
             Auth::logout();
             return redirect('/login')->withErrors([
                 'email' => 'You do not have the necessary permissions to access this website.'

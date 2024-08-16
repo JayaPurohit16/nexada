@@ -12171,6 +12171,10 @@ td.fc-header-center {
   width: 50%;
 }
 
+.auth-center {
+  width: 100%;
+}
+
 @media (max-width: 991px) {
   .auth-right {
     width: 100%;

@@ -11,12 +11,10 @@
                       Dashboard
                   </a>
               </li>
-              <li>-</li>
-              <li class="fw-medium">CRM</li>
           </ul>
       </div>
 
-      <div class="row gy-4">
+      {{-- <div class="row gy-4">
           <div class="col-xxl-8">
               <div class="row gy-4">
 
@@ -1149,7 +1147,7 @@
               </div>
           </div>
           <!-- Latest Performance End -->
-      </div>
+      </div> --}}
   </div>
 @endsection
 

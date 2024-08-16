@@ -34,7 +34,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['middleware' => ['auth','role:Super Admin|Admin|Desk|Teacher|Student|Parent'], 'prefix' => 'admin'], function () {
+Route::group(['middleware' => ['auth','role:Super Admin|Admin|Desk|Teacher'], 'prefix' => 'admin'], function () {
     //Dashboard & profile
     Route::get('/dashboard', [HomeController::class, 'index'])->name('admin.dashboard');
     Route::get('/profile', [HomeController::class, 'profile'])->name('admin.profile');
