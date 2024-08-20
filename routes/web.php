@@ -136,6 +136,8 @@ Route::group(['middleware' => ['auth','role:Super Admin|Admin|Desk|Teacher'], 'p
         Route::get('/delete/{id}', [StudentController::class, 'destroy'])->name('destroy')->middleware('auth.redirect:student-delete');
         Route::post('/get-student', [StudentController::class, 'getStudent'])->name('getStudent');
         Route::post('/check-mail', [StudentController::class, 'checkMail'])->name('checkMail');
+        Route::get('/subscriptions/{locationId}', [StudentController::class, 'getSubscriptionsByLocation'])->name('subscriptions.getByLocation');
+        Route::get('/subscriptions/confirmation', [StudentController::class, 'confirmation'])->name('confirmation');
     });
 
     //Admin
