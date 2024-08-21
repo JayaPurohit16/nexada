@@ -96,15 +96,15 @@
                             </div>
                         </div> --}}
 
-                        <div class="d-flex align-items-center justify-content-center gap-3">
+                        <div class="d-flex align-items-center justify-content-sm-end justify-content-center gap-3">
                             <button type="button"
-                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8">
+                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-sm-56 py-sm-11 px-40 py-8 radius-8">
                                 <a href="{{ route('admin.admin.index') }}">
                                     Cancel
                                 </a>
                             </button>
                             <button type="submit"
-                                class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8" id="saveButton">
+                                class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" id="saveButton">
                                 Save
                             </button>
                         </div>

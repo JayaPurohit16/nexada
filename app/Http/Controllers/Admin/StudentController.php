@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Mail\SendPasswordEmail;
+use App\Models\CardDetail;
 use App\Models\Instrument;
 use App\Models\Location;
 use App\Models\Student;
@@ -57,6 +58,7 @@ class StudentController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'first_name'         => 'required',
             'second_name'        => 'required',
@@ -152,7 +154,17 @@ class StudentController extends Controller
                     $parent->save();
                 } 
 
-                DB::commit();
+                $cardDetails = new CardDetail();
+                $cardDetails->student_id = $student->id;
+                $cardDetails->parent_id = isset($parentUser) ? $parentUser->id : null;
+                $cardDetails->card_number = $request->card_number;
+                $cardDetails->expiry_month = $request->expiry_month;
+                $cardDetails->expiry_year = $request->expiry_year;
+                $cardDetails->cvv = $request->cvv;
+                $cardDetails->save();
+
+                DB::commit(); 
+                // return view('admin.student.thankYou')->with('success','Student created sucessfully'); 
                 return redirect()->route('admin.student.index')->with('success','Student created sucessfully'); 
             
         } catch (Exception $e) {
@@ -169,8 +181,9 @@ class StudentController extends Controller
             $locations = Location::get();
             $instruments = Instrument::get();
             $subscriptionTypes = SubscriptionType::get();
+            $cardDetails = CardDetail::where('student_id',$student->id)->first();
             if($student){
-                return view('admin.student.edit',compact('student','locations','instruments','subscriptionTypes'));
+                return view('admin.student.edit',compact('student','locations','instruments','subscriptionTypes','cardDetails'));
             } else {
                 return redirect()->back()->with('error','Student not found'); 
             }
@@ -182,6 +195,7 @@ class StudentController extends Controller
 
     public function update(Request $request)
     {
+        // dd($request->all());
         $validated = $request->validate([
             'first_name'         => 'required',
             'second_name'        => 'required',
@@ -328,6 +342,16 @@ class StudentController extends Controller
                 }
             }
 
+            $cardDetails = CardDetail::where('student_id',$student->id)->first();
+            if($cardDetails){
+                $cardDetails->student_id = isset($student) ? $student->id : null;
+                $cardDetails->parent_id = isset($parentUser) ? $parentUser->id : null;
+                $cardDetails->card_number = $request->card_number;
+                $cardDetails->expiry_month = $request->expiry_month;
+                $cardDetails->expiry_year = $request->expiry_year;
+                $cardDetails->cvv = $request->cvv;
+                $cardDetails->update();
+            }
             DB::commit();
             return redirect()->route('admin.student.index')->with('success','Student updated sucessfully'); 
             
@@ -404,6 +428,10 @@ class StudentController extends Controller
                     $user->save();
 
                     $user->delete();
+                }
+                $cardDetails = CardDetail::where('student_id',$student->id)->first();
+                if($cardDetails){
+                    $cardDetails->delete();
                 }
                 $student->delete();
                 return redirect()->route('admin.student.index')->with('success','Student deleted sucessfully'); 
@@ -485,5 +513,18 @@ class StudentController extends Controller
             $exists = User::where('email', $email)->exists();
         }
         return response()->json(['exists' => $exists]);
+    }
+
+    public function getSubscriptionsByLocation($locationId)
+    {
+        try {
+            $subscriptionTypes = SubscriptionType::whereHas('subscriptionInfo', function ($query) use ($locationId) {
+                $query->where('location_id', $locationId);
+            })->with('subscriptionInfo')->get();
+            return response()->json($subscriptionTypes);
+        } catch (Exception $e) {
+            Log::info('Error fetching subscriptions: ' . $e->getMessage());
+            return response()->json(['error' => 'Something went wrong'], 500);
+        }
     }
 }

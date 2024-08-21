@@ -10,6 +10,8 @@ class SubscriptionType extends Model
 {
     use HasFactory, SoftDeletes;
 
+    protected $appends = ['billing_period_name'];
+
     public function SubscriptionInfo()
     {
         return $this->belongsTo(Subscription::class, 'subscription_id');

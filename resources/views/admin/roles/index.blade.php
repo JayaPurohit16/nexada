@@ -23,7 +23,7 @@
                     class="ri-add-line"></i> Add Role</a>
             </div>
             <div class="card-body">
-                <table class="table bordered-table mb-0" id="dataTable" data-page-length='10'>
+                <table class="table bordered-table m-0 w-100" id="dataTable" data-page-length='10'>
                     <thead>
                         <tr>
                             {{-- <th scope="col">

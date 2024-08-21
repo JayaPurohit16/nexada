@@ -25,8 +25,8 @@
             <div class="card-body p-24">
                 <form action="{{ route('admin.roles.store') }}" method="POST" id="rolesForm" enctype="multipart/form-data">
                     @csrf
-                    <div class="row gy-4">
-                        <div class="col-md-6">
+                    <div class="row gy-4 overflow-auto">
+                        <div class="col-md-6 ps-0">
                             <label for="facebook_link"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Role <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('role') is-invalid @enderror" name="role" id="role"
@@ -68,20 +68,24 @@
                                                 <strong>{{ $module->formatted_name ?? '' }}</strong>
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="module" class="module-checkbox" data-module-id="{{ $module->id }}" style="appearance: auto"> 
-                                                All
-                                                <br/>
-                                                @foreach($module->permissions as $permission)
+                                                <div class="d-flex flex-wrap gap-2">
                                                     <label>
-                                                        <input type="checkbox" name="permission[]" value="{{ $permission->name }}" data-module-id="{{ $module->id }}" class="permission-checkbox" style="appearance: auto">
-                                                        @php
-                                                            $formatName = ucfirst(strtolower(str_replace('_', ' ', str_replace('-', ' ', $permission->name))));
-                                                            // $formatName = substr($permission->name, strpos($permission->name, "_") + 1);
-                                                        @endphp
-                                                        {{ $formatName ?? '' }}
+                                                        <input type="checkbox" name="module" class="module-checkbox" data-module-id="{{ $module->id }}" style="appearance: auto"> 
+                                                        All
                                                     </label>
                                                     <br/>
-                                                @endforeach
+                                                    @foreach($module->permissions as $permission)
+                                                        <label>
+                                                            <input type="checkbox" name="permission[]" value="{{ $permission->name }}" data-module-id="{{ $module->id }}" class="permission-checkbox" style="appearance: auto">
+                                                            @php
+                                                                $formatName = ucfirst(strtolower(str_replace('_', ' ', str_replace('-', ' ', $permission->name))));
+                                                                // $formatName = substr($permission->name, strpos($permission->name, "_") + 1);
+                                                            @endphp
+                                                            {{ $formatName ?? '' }}
+                                                        </label>
+                                                        <br/>
+                                                    @endforeach
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -90,15 +94,15 @@
                             </table>
                         @endif
 
-                        <div class="d-flex align-items-center justify-content-center gap-3">
+                        <div class="d-flex align-items-center justify-content-sm-end justify-content-center gap-sm-3 gap-1">
                             <button type="button"
-                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8">
+                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-sm-56 py-sm-11 px-40 py-8 radius-8">
                                 <a href="{{ route('admin.roles.index') }}">
                                     Cancel
                                 </a>
                             </button>
                             <button type="submit"
-                                class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8" id="saveButton">
+                                class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" id="saveButton">
                                 Save
                             </button>
                         </div>

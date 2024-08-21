@@ -27,7 +27,7 @@
                     @csrf
                     <input type="hidden" name="id" value="{{ $location->id }}">
                     <div class="row gy-4">
-                        <div class="col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <label for="facebook_link"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Location <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('name') is-invalid @enderror" name="name" id="name"
@@ -37,7 +37,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <label for="phone"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Phone <span class="text-danger-600">*</span></label>
                             <input type="text" class="form-control radius-8 @error('phone') is-invalid @enderror" name="phone" id="phone"
@@ -48,7 +48,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-lg-4 col-md-6">
                             <label for="calender_by_instruments"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Calender by instruments <span class="text-danger-600"></span></label>
                             <input type="text" class="form-control radius-8 @error('calender_by_instruments') is-invalid @enderror" name="calender_by_instruments" id="calender_by_instruments"
@@ -78,7 +78,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="address"
                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Address <span class="text-danger-600">*</span></label>
                             <textarea type="text" class="form-control radius-8 @error('address') is-invalid @enderror" name="address" id="address"
@@ -88,15 +88,15 @@
                             @enderror
                         </div>
 
-                        <div class="d-flex align-items-center justify-content-center gap-3">
+                        <div class="d-flex align-items-center justify-content-sm-end justify-content-center gap-sm-3 gap-1">
                             <button type="button"
-                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8">
+                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-sm-56 py-sm-11 px-40 py-8 radius-8">
                                 <a href="{{ route('admin.location.index') }}">
                                     Cancel
                                 </a>
                             </button>
                             <button type="submit"
-                                class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8" id="saveButton">
+                                class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" id="saveButton">
                                 Update
                             </button>
                         </div>
