@@ -68,6 +68,7 @@
                                 </div>
                             </div>
                         </div>
+                        <label id="imageUpload-error" class="error" for="imageUpload"></label>
                     </div>
 
                     <div class="d-flex align-items-center justify-content-sm-end justify-content-center gap-3">
