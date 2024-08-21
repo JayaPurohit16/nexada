@@ -73,21 +73,25 @@
                                                 <strong>{{ $module->formatted_name ?? '' }}</strong>
                                             </td>
                                             <td>
-                                                <input type="checkbox" name="module" class="module-checkbox" data-module-id="{{ $module->id }}" style="appearance: auto"> 
-                                                All
-                                                <br/>
-                                                @foreach($module->permissions as $permission)
+                                                <div class="d-flex gap-2">
                                                     <label>
-                                                        <input type="checkbox" name="permission[]" value="{{ $permission->name }}" data-module-id="{{ $module->id }}" class="permission-checkbox"
-                                                        {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }} 
-                                                        class="name" style="appearance: auto">
-                                                        @php
-                                                            $formatName = ucfirst(strtolower(str_replace('_', ' ', str_replace('-', ' ', $permission->name))));
-                                                        @endphp
-                                                        {{ $formatName ?? '' }}
+                                                        <input type="checkbox" name="module" class="module-checkbox" data-module-id="{{ $module->id }}" style="appearance: auto"> 
+                                                        All
                                                     </label>
                                                     <br/>
-                                                @endforeach
+                                                    @foreach($module->permissions as $permission)
+                                                        <label>
+                                                            <input type="checkbox" name="permission[]" value="{{ $permission->name }}" data-module-id="{{ $module->id }}" class="permission-checkbox"
+                                                            {{ in_array($permission->id, $rolePermissions) ? 'checked' : '' }} 
+                                                            class="name" style="appearance: auto">
+                                                            @php
+                                                                $formatName = ucfirst(strtolower(str_replace('_', ' ', str_replace('-', ' ', $permission->name))));
+                                                            @endphp
+                                                            {{ $formatName ?? '' }}
+                                                        </label>
+                                                        <br/>
+                                                    @endforeach
+                                                </div>
                                             </td>
                                         </tr>
                                     @endforeach
@@ -96,15 +100,15 @@
                         @endif
 
                         
-                        <div class="d-flex align-items-center justify-content-center gap-3">
+                        <div class="d-flex align-items-center justify-content-sm-end justify-content-center gap-sm-3 gap-1">
                             <button type="button"
-                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-56 py-11 radius-8">
+                                class="border border-danger-600 bg-hover-danger-200 text-danger-600 text-md px-sm-56 py-sm-11 px-40 py-8 radius-8">
                                 <a href="{{ route('admin.roles.index') }}">
                                     Cancel
                                 </a>
                             </button>
                             <button type="submit"
-                                class="btn btn-primary border border-primary-600 text-md px-56 py-12 radius-8" id="saveButton">
+                                class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" id="saveButton">
                                 Update
                             </button>
                         </div>

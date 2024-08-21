@@ -39,13 +39,28 @@
 <!-- Select2 JS -->
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
+<!-- Lightbox JS -->
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
 
 <script>
-    setTimeout(function() {
+    setTimeout(function () {
         $('.alert').remove();
     }, 3000);
 
-    $('.remove-button').on('click', function() {
+    $('.remove-button').on('click', function () {
         $(this).closest('.alert').addClass('d-none')
     });
+
+    // let lightbox = GLightbox({
+    //     touchNavigation: true,
+    //     loop: false,
+    //     iframe: false,
+    //     width: "90vw",
+    //     height: "90vh"
+    // });
+
+    let lightbox = GLightbox({
+        selector: '.glightbox'
+    });
+
 </script>

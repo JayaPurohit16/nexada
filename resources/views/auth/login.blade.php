@@ -120,14 +120,14 @@
 
 <body>
 
-    <section class="auth bg-base d-flex flex-wrap">
+    <section class="auth d-flex flex-wrap">
         {{-- <div class="auth-left d-lg-block d-none">
             <div class="d-flex align-items-center flex-column h-100 justify-content-center">
                 <img src="{{ asset('assets/images/auth/auth-img.png') }}" alt="">
             </div>
         </div> --}}
         <div class="auth-center py-32 px-24 d-flex flex-column justify-content-center">
-            <div class="max-w-464-px mx-auto w-100">
+            <div class="max-w-464-px mx-auto w-100 login-card">
                 <div>
                     {{-- <a href="" class="mb-40 max-w-290-px">
                         <img src="assets/images/logo.png" alt="">
