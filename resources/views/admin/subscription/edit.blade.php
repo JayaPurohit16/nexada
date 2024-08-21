@@ -103,7 +103,7 @@
                                 <div class="col-md-12 pricing-group">
                                     <input type="hidden" name="subscriptionTypeId[]" value="{{ $subscriptionType->id ?? '' }}">
                                     <div class="row gy-4">
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="price"
                                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span
                                                     class="text-danger-600">*</span></label>
@@ -118,7 +118,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="billing_period"
                                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period
                                                 (In Months) <span class="text-danger-600">*</span></label>
@@ -155,7 +155,7 @@
                                             @enderror
                                         </div>
 
-                                        <div class="col-md-4">
+                                        <div class="col-md-3">
                                             <label for="discount"
                                                 class="form-label fw-semibold text-primary-light text-sm mb-8">Discount (in %)
                                                 <span class="text-danger-600">*</span></label>
@@ -169,11 +169,11 @@
                                                 @error('discount.*')
                                                     <div class="invalid-feedback">{{ $message }}</div>
                                                 @enderror
-                                                <div>
-                                                    <button type="button"
-                                                        class="btn btn-primary border border-primary-600 remove-pricing-group">Remove</button>
-                                                </div>
                                             </div>
+                                        </div>
+                                        <div class="col-md-3 mt-auto">
+                                            <button type="button"
+                                                class="btn btn-primary border border-primary-600 remove-pricing-group">Remove</button>
                                         </div>
                                     </div>
                                 </div>
@@ -367,7 +367,7 @@
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-outline-danger remove-pricing-group" style="margin-top: 33px">Remove</button>
+                                        <button type="button" class="btn btn-primary border border-primary-600 remove-pricing-group" style="margin-top: 33px">Remove</button>
                                     </div>
                                 </div>
                             </div>

@@ -49,7 +49,7 @@
                             @error('image')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
-                            <div class="avatar-upload">     
+                            <div class="avatar-upload">
                                 <div class="avatar-preview style-two">
                                     <div id="previewImage1"
                                         style="background-image: url('{{ asset('assets/images/subscription-icon.png') }}');">
@@ -85,89 +85,90 @@
                         @enderror
                     </div>
 
-                    <div id="pricingContainer">
-                        <div class="col-md-12 d-flex justify-content-between">
-                            <h6>Pricing Details</h6>
-                            <button type="button" class="btn btn-primary border border-primary-600"
-                                id="addPricingGroup">Add More
-                                Pricing</button>
-                        </div>
-                        <div class="col-md-12 pricing-group">
-                            <div class="row gy-4">
-                                <div class="col-md-3">
-                                    <label for="price"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span
-                                            class="text-danger-600">*</span></label>
-                                    <input type="number"
-                                        class="form-control radius-8 price @error('price.*') is-invalid @enderror"
-                                        name="price[]" id="price" placeholder="Price"
-                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                                        onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0"
-                                        max="100000">
-                                    @error('price.*')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                    <div class="col-md-12">
+                        <div class="row gy-4" id="pricingContainer">
+                            <div class="col-md-12 d-flex align-items-end justify-content-between">
+                                <h6>Pricing Details</h6>
+                                <button type="button" class="btn btn-primary border border-primary-600"
+                                    id="addPricingGroup">Add More
+                                    Pricing</button>
+                            </div>
+                            <div class="col-md-12 pricing-group">
+                                <div class="row gy-4">
+                                    <div class="col-md-3">
+                                        <label for="price"
+                                            class="form-label fw-semibold text-primary-light text-sm mb-8">Price <span
+                                                class="text-danger-600">*</span></label>
+                                        <input type="number"
+                                            class="form-control radius-8 price @error('price.*') is-invalid @enderror"
+                                            name="price[]" id="price" placeholder="Price"
+                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                            onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0"
+                                            max="100000">
+                                        @error('price.*')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-                                <div class="col-md-3">
-                                    <label for="billing_period"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period
-                                        (In Months) <span class="text-danger-600">*</span></label>
-                                    <select name="billing_period[]" id="billing_period"
-                                        class="form-control billing_period">
-                                        <option value="">Billing Period (In Months)</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                    </select>
-                                    @error('billing_period.*')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                                    <div class="col-md-3">
+                                        <label for="billing_period"
+                                            class="form-label fw-semibold text-primary-light text-sm mb-8">Billing Period
+                                            (In Months) <span class="text-danger-600">*</span></label>
+                                        <select name="billing_period[]" id="billing_period"
+                                            class="form-control billing_period">
+                                            <option value="">Billing Period (In Months)</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                            <option value="11">11</option>
+                                            <option value="12">12</option>
+                                        </select>
+                                        @error('billing_period.*')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
-                                <div class="col-md-3">
-                                    <label for="discount"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Discount (in %)
-                                        <span class="text-danger-600">*</span></label>
-                                    <input type="number"
-                                        class="form-control radius-8 discount @error('discount.*') is-invalid @enderror"
-                                        name="discount[]" id="discount" placeholder="Discount (in %)"
-                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                                        onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0"
-                                        max="100">
-                                    @error('discount.*')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
-
-                                <div class="col-md-3">
-                                    <label for="amount_of_free_lessons"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Amount Of Free
-                                        Lesson <span class="text-danger-600">*</span></label>
-                                    <input type="number"
-                                        class="form-control radius-8 @error('amount_of_free_lessons') is-invalid @enderror"
-                                        name="amount_of_free_lessons" id="amount_of_free_lessons" placeholder="Price"
-                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                                        onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0"
-                                        max="100000">
-                                    @error('amount_of_free_lessons')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
+                                    <div class="col-md-3">
+                                        <label for="discount"
+                                            class="form-label fw-semibold text-primary-light text-sm mb-8">Discount (in %)
+                                            <span class="text-danger-600">*</span></label>
+                                        <input type="number"
+                                            class="form-control radius-8 discount @error('discount.*') is-invalid @enderror"
+                                            name="discount[]" id="discount" placeholder="Discount (in %)"
+                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                            onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0"
+                                            max="100">
+                                        @error('discount.*')
+                                            <div class="invalid-feedback">{{ $message }}</div>
+                                        @enderror
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-lg-4 col-md-6">
+                        <label for="amount_of_free_lessons"
+                            class="form-label fw-semibold text-primary-light text-sm mb-8">Amount Of Free
+                            Lesson <span class="text-danger-600">*</span></label>
+                        <input type="number"
+                            class="form-control radius-8 @error('amount_of_free_lessons') is-invalid @enderror"
+                            name="amount_of_free_lessons" id="amount_of_free_lessons" placeholder="Price"
+                            onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                            onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100000">
+                        @error('amount_of_free_lessons')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
                         <label for="location_id" class="form-label fw-semibold text-primary-light text-sm mb-8">Location
                             <span class="text-danger-600">*</span></label>
                         <select name="location_id" id="location_id" class="form-control">
@@ -183,7 +184,7 @@
                         @enderror
                     </div>
 
-                    <div class="col-md-6">
+                    <div class="col-lg-4 col-md-6">
                         <label for="new_sign_up_allowed"
                             class="form-label fw-semibold text-primary-light text-sm mb-8">New Sign-Ups Allowed <span
                                 class="text-danger-600">*</span></label>
@@ -409,7 +410,7 @@
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-outline-danger remove-pricing-group" style="margin-top: 33px">Remove</button>
+                                        <button type="button" class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" style="margin-top: 33px">Remove</button>
                                     </div>
                                 </div>
                             </div>
@@ -443,7 +444,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function (e) {
-                    $('#' + previewElementId).css('background-image', 'url(' +  e.target.result + ')');
+                    $('#' + previewElementId).css('background-image', 'url(' + e.target.result + ')');
                     $('#' + previewElementId).hide();
                     $('#' + previewElementId).fadeIn(650);
                 }

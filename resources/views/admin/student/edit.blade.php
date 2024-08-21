@@ -43,7 +43,7 @@
                         </li>
                     </ul> -->
 
-                <ul class="nav border-gradient-tab nav-pills d-inline-flex" id="myTab" role="tablist">
+                <ul class="nav border-gradient-tab nav-pills d-inline-flex mb-3" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
                         <button class="nav-link d-flex align-items-center px-24 active" id="student-tab"
                             data-bs-toggle="tab" data-bs-target="#student" type="button" role="tab"
@@ -111,19 +111,17 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-20">
-                                    <label for="email"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Email
-                                        <span class="text-danger-600">*</span></label>
-                                    <input type="email"
-                                        class="form-control radius-8 @error('email') is-invalid @enderror" name="email"
-                                        id="email" placeholder="Email address" maxlength="100"
-                                        value="{{ $student->userInfo->email ?? '' }}">
-                                    @error('email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-lg-4 col-md-6"> 
+                                <label for="email"
+                                    class="form-label fw-semibold text-primary-light text-sm mb-8">Email
+                                    <span class="text-danger-600">*</span></label>
+                                <input type="email"
+                                    class="form-control radius-8 @error('email') is-invalid @enderror" name="email"
+                                    id="email" placeholder="Email address" maxlength="100"
+                                    value="{{ $student->userInfo->email ?? '' }}">
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror 
                             </div>
 
                             <div class="col-lg-4 col-md-6">
@@ -248,19 +246,17 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-20">
-                                    <label for="parent_email"
-                                        class="form-label fw-semibold text-primary-light text-sm mb-8">Email <span
-                                            class="text-danger-600">*</span></label>
-                                    <input type="parent_email"
-                                        class="form-control radius-8 @error('parent_email') is-invalid @enderror"
-                                        name="parent_email" id="parent_email" placeholder="Email address"
-                                        maxlength="100" value="{{ $student->parentInfo->userInfo->email ?? '' }}">
-                                    @error('parent_email')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-lg-4 col-md-6"> 
+                                <label for="parent_email"
+                                    class="form-label fw-semibold text-primary-light text-sm mb-8">Email <span
+                                        class="text-danger-600">*</span></label>
+                                <input type="parent_email"
+                                    class="form-control radius-8 @error('parent_email') is-invalid @enderror"
+                                    name="parent_email" id="parent_email" placeholder="Email address"
+                                    maxlength="100" value="{{ $student->parentInfo->userInfo->email ?? '' }}">
+                                @error('parent_email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror 
                             </div>
 
                             <div class="col-lg-4 col-md-6">
@@ -387,19 +383,17 @@
                                 @enderror
                             </div>
 
-                            <div class="col-lg-4 col-md-6">
-                                <div class="mb-20">
-                                    <label for="cvv" class="form-label fw-semibold text-primary-light text-sm mb-8">CVV
-                                        <span class="text-danger-600">*</span></label>
-                                    <input type="cvv" class="form-control radius-8 @error('cvv') is-invalid @enderror"
-                                        name="cvv" id="cvv" placeholder="CVV" value="{{ $cardDetails->cvv }}"
-                                        minlength="3" maxlength="3"
-                                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'
-                                        onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
-                                    @error('cvv')
-                                        <div class="invalid-feedback">{{ $message }}</div>
-                                    @enderror
-                                </div>
+                            <div class="col-lg-4 col-md-6"> 
+                                <label for="cvv" class="form-label fw-semibold text-primary-light text-sm mb-8">CVV
+                                    <span class="text-danger-600">*</span></label>
+                                <input type="cvv" class="form-control radius-8 @error('cvv') is-invalid @enderror"
+                                    name="cvv" id="cvv" placeholder="CVV" value="{{ $cardDetails->cvv }}"
+                                    minlength="3" maxlength="3"
+                                    onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                    onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
+                                @error('cvv')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror 
                             </div>
                         </div>
                         <div class="d-flex align-items-center justify-content-end gap-3 submit-button">

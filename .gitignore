@@ -19,3 +19,4 @@ yarn-error.log
 
 # remove uploaded files or images
 /public/uploads
+package-lock.json
