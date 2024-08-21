@@ -51,7 +51,7 @@
                             Student
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" id="parentTab">
                         <button class="nav-link d-flex align-items-center px-24" id="parent-tab" data-bs-toggle="tab"
                             data-bs-target="#parent" type="button" role="tab" aria-controls="parent"
                             aria-selected="false" disabled tabindex="-1">
