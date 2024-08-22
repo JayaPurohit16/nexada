@@ -252,21 +252,22 @@
                                 </div>
                             </form>
                         </div>
-                        <form action="{{route('admin.password.update')}}" method="POST" id="PasswordForm">
-                            @csrf
-                            <div class="tab-pane fade" id="pills-change-passwork" role="tabpanel"
-                                aria-labelledby="pills-change-passwork-tab" tabindex="0">
+
+                        <div class="tab-pane fade" id="pills-change-passwork" role="tabpanel"
+                            aria-labelledby="pills-change-passwork-tab" tabindex="0">
+                            <form action="{{route('admin.password.update')}}" method="POST" id="PasswordForm">
+                                @csrf
                                 <div class="row">
                                     <div class="col-md-6 mb-20">
                                         <label for="newPassword"
                                             class="form-label fw-semibold text-primary-light text-sm mb-8">New Password
                                             <span class="text-danger-600">*</span></label>
                                         <div class="position-relative">
-                                            <input type="password" class="form-control radius-8" id="newPassword"
-                                                name="newPassword" placeholder="Enter New Password*" minlength="6"
-                                                maxlength="30" required>
+                                            <input type="password" class="form-control radius-8 "
+                                                id="newPassword" name="newPassword" placeholder="Enter New Password*"
+                                                minlength="6" maxlength="30" required>
                                             <span
-                                                class="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light"
+                                                class="toggle-password ri-eye-line cursor-pointer position-absolute translate-middle-y me-16 text-secondary-light"
                                                 data-toggle="#newPassword"></span>
                                         </div>
                                     </div>
@@ -275,11 +276,11 @@
                                             class="form-label fw-semibold text-primary-light text-sm mb-8">Confirmed
                                             Password <span class="text-danger-600">*</span></label>
                                         <div class="position-relative">
-                                            <input type="password" class="form-control radius-8" id="confirmPassword"
-                                                name="confirmPassword" placeholder="Confirm Password*" minlength="6"
-                                                maxlength="30" required>
+                                            <input type="password" class="form-control radius-8 "
+                                                id="confirmPassword" name="confirmPassword"
+                                                placeholder="Confirm Password*" minlength="6" maxlength="30" required>
                                             <span
-                                                class="toggle-password ri-eye-line cursor-pointer position-absolute end-0 top-50 translate-middle-y me-16 text-secondary-light"
+                                                class="toggle-password ri-eye-line cursor-pointer position-absolute translate-middle-y me-16 text-secondary-light"
                                                 data-toggle="#confirmPassword"></span>
                                         </div>
                                     </div>
@@ -295,8 +296,9 @@
                                         Save
                                     </button>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
+
 
                         {{-- <div class="tab-pane fade" id="pills-notification" role="tabpanel"
                             aria-labelledby="pills-notification-tab" tabindex="0">

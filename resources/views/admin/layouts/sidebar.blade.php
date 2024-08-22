@@ -2,7 +2,7 @@
     $canViewUsers = auth()->user()->can('teacher-list') || auth()->user()->can('student-list') || auth()->user()->can('admin-list');
 @endphp
 
-<aside class="sidebar">
+<aside class="sidebar d-flex flex-column">
     <button type="button" class="sidebar-close-btn">
         <iconify-icon icon="radix-icons:cross-2"></iconify-icon>
     </button>
@@ -13,7 +13,7 @@
             <img src="{{ asset(appLogoUrl()) }}" alt="site logo" class="logo-icon">
         </a>
     </div>
-    <div class="sidebar-menu-area">
+    <div class="sidebar-menu-area flex-grow-1">
         <ul class="sidebar-menu" id="sidebar-menu">
             {{-- <li class="dropdown">
                 <a href="javascript:void(0)">
