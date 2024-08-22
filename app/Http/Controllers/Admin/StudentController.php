@@ -113,7 +113,7 @@ class StudentController extends Controller
                 $student->user_id = $user->id;
                 $student->date_of_birth = isset($request->date_of_birth) ? $request->date_of_birth : '';
                 $student->location_id = isset($request->location_id) ? $request->location_id : '';
-                $student->primary_instrument = isset($request->primary_instrument) ? $request->primary_instrument : '';
+                $student->primary_instrument = implode(',',$request->primary_instrument);
                 $student->plan = isset($request->plan) ? $request->plan : '';
 
                 $student->save();
@@ -164,8 +164,8 @@ class StudentController extends Controller
                 $cardDetails->save();
 
                 DB::commit(); 
-                // return view('admin.student.thankYou')->with('success','Student created sucessfully'); 
-                return redirect()->route('admin.student.index')->with('success','Student created sucessfully'); 
+                return view('admin.student.paymentSuccess')->with('success','Student created sucessfully'); 
+                // return redirect()->route('admin.student.index')->with('success','Student created sucessfully'); 
             
         } catch (Exception $e) {
             DB::rollBack();
@@ -178,12 +178,13 @@ class StudentController extends Controller
     {
         try {
             $student = Student::where('id',$id)->first();
+            $selectedInstruments = explode(',', $student->primary_instrument);
             $locations = Location::get();
             $instruments = Instrument::get();
             $subscriptionTypes = SubscriptionType::get();
             $cardDetails = CardDetail::where('student_id',$student->id)->first();
             if($student){
-                return view('admin.student.edit',compact('student','locations','instruments','subscriptionTypes','cardDetails'));
+                return view('admin.student.edit',compact('student','selectedInstruments','locations','instruments','subscriptionTypes','cardDetails'));
             } else {
                 return redirect()->back()->with('error','Student not found'); 
             }
@@ -253,7 +254,7 @@ class StudentController extends Controller
                 $student->user_id = $user->id;
                 $student->date_of_birth = isset($request->date_of_birth) ? $request->date_of_birth : '';
                 $student->location_id = isset($request->location_id) ? $request->location_id : '';
-                $student->primary_instrument = isset($request->primary_instrument) ? $request->primary_instrument : '';
+                $student->primary_instrument = implode(',',$request->primary_instrument);
                 $student->plan = isset($request->plan) ? $request->plan : '';
 
                 $student->update();
