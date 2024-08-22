@@ -51,7 +51,7 @@
                             Student
                         </button>
                     </li>
-                    <li class="nav-item" role="presentation">
+                    <li class="nav-item" role="presentation" id="parentTab">
                         <button class="nav-link d-flex align-items-center px-24" id="parent-tab" data-bs-toggle="tab"
                             data-bs-target="#parent" type="button" role="tab" aria-controls="parent"
                             aria-selected="false" disabled tabindex="-1">
@@ -294,7 +294,7 @@
                                 <input type="text"
                                     class="form-control radius-8 @error('card_number') is-invalid @enderror"
                                     name="card_number" id="card_number" placeholder="Card Number"
-                                    value="{{ $cardDetails->card_number }}" minlength="16" maxlength="16"
+                                    value="{{ $cardDetails->card_number ?? '' }}" minlength="16" maxlength="16"
                                     onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                     onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">
                                 @error('card_number')
@@ -387,7 +387,7 @@
                                 <label for="cvv" class="form-label fw-semibold text-primary-light text-sm mb-8">CVV
                                     <span class="text-danger-600">*</span></label>
                                 <input type="cvv" class="form-control radius-8 @error('cvv') is-invalid @enderror"
-                                    name="cvv" id="cvv" placeholder="CVV" value="{{ $cardDetails->cvv }}"
+                                    name="cvv" id="cvv" placeholder="CVV" value="{{ $cardDetails->cvv ?? '' }}"
                                     minlength="3" maxlength="3"
                                     onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                     onkeyup="this.value=this.value.replace(/[^0-9]/g, '')">

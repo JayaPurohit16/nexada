@@ -410,7 +410,7 @@
                                 onkeyup="this.value=this.value.replace(/[^0-9]/g, '')" value="0" min="0" max="100">
                                     </div>
                                     <div class="col-md-3">
-                                        <button type="button" class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8" style="margin-top: 33px">Remove</button>
+                                        <button type="button" class="btn btn-primary border border-primary-600 text-md px-sm-56 py-sm-11 px-40 py-10 radius-8 remove-pricing-group" style="margin-top: 33px">Remove</button>
                                     </div>
                                 </div>
                             </div>
