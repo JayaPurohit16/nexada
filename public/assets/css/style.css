@@ -10990,7 +10990,7 @@ textarea:active {
 
 .icon-field .icon {
   position: absolute;
-  top: 12px;
+  top: 20px;
   inset-inline-start: 0;
   width: 40px;
   display: flex;
@@ -10998,6 +10998,7 @@ textarea:active {
   align-items: center;
   font-size: 1.25rem;
   color: var(--text-secondary-light);
+  transition: all 0.1s ease-in-out;
 }
 
 .icon-field .form-control {
@@ -13417,7 +13418,6 @@ td.fc-header-center {
 }
 
 .sidebar-menu-area {
-  height: calc(100vh - 72px);
   padding: 0.75rem 1rem;
   overflow-y: auto;
   border-inline-end: 1px solid var(--neutral-200);
@@ -13674,11 +13674,12 @@ td.fc-header-center {
 .sidebar-version {
   position: sticky;
   bottom: 0;
-  /* background-color: #f1f1f1; */
-  padding: 10px;
+  background-color: #fff;
+  padding: 23px;
   text-align: center;
   font-size: 14px;
-  /* border-top: 1px solid #ddd; */
+  border-top: 1px solid var(--neutral-200);
+  border-inline-end: 1px solid var(--neutral-200);
 }
 
 /* Login Page Starts */
@@ -13787,4 +13788,15 @@ table.dataTable thead>tr>th.dt-ordering-desc span.dt-column-order:before{
 
 .table-border-set table.dataTable tr>th {
   border-bottom: 0 !important;
+}
+
+.ri-eye-line{
+  width: 10px;
+  margin-left: auto !important;
+  position: absolute;
+  top: 23px !important;
+  right: 0;
+  inset-inline-start: 0;
+  color: var(--text-secondary-light);
+  transition: all 0.1s ease-in-out;
 }

@@ -138,7 +138,7 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="icon-field mb-16">
-                        <span class="icon top-50 translate-middle-y">
+                        <span class="icon translate-middle-y">
                             <iconify-icon icon="mage:email"></iconify-icon>
                         </span>
                         <input type="email" id="email"
