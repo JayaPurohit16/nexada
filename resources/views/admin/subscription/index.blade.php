@@ -39,6 +39,7 @@
                         Save
                     </button>
                 </div>
+                <label id="price-error" class="error" for="price"></label>
             </div>
         </form>
     </div>
