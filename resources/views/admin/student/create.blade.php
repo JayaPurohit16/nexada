@@ -119,17 +119,20 @@
 
                             <div class="col-lg-4 col-md-6">
                                 <label for="primary_instrument"
-                                    class="form-label fw-semibold text-primary-light text-sm mb-8">Primary Instrument <span class="text-danger-600">*</span></label>
-                                <select name="primary_instrument" id="primary_instrument" class="form-control">
+                                    class="form-label fw-semibold text-primary-light text-sm">Primary Instrument
+                                    Teach <span class="text-danger-600">*</span></label>
+                                <select name="primary_instrument[]" id="primary_instrument" class="form-control select2 select-instrument"
+                                    multiple="multiple">
                                     @if(isset($instruments))
                                         @foreach ($instruments as $instrument)
                                             <option value="{{ $instrument->id }}">{{ $instrument->name }}</option>
                                         @endforeach
                                     @endif
                                 </select>
-                                @error('primary_instrument')
+                                @error('primary_instrument[]')
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
+                                <label id="primary_instrument-error" class="error" for="primary_instrument"></label>
                             </div>
     
                             <div class="col-lg-4 col-md-6">
@@ -320,6 +323,11 @@
     <script>
         $(document).ready(function() {
 
+            $('.select2').select2({
+                placeholder: "Select Instrument(s)",
+                allowClear: true
+            });
+
             var today = new Date().toISOString().split('T')[0];
             $('#date_of_birth').attr('max', today);
 
@@ -350,7 +358,7 @@
                         digits: true
                     },
                     location_id: "required",
-                    primary_instrument: "required",
+                    'primary_instrument[]': "required",
                     plan: "required",
                 },
                 messages: {
@@ -369,7 +377,7 @@
                         digits: "Please enter a valid phone number"
                     },
                     location_id: "Please select a location",
-                    primary_instrument: "Please select a primary instrument",
+                    'primary_instrument[]': "Please select a primary instrument",
                     plan: "Please select a plan",
                 },
                 errorClass: "error",
@@ -447,7 +455,7 @@
                                 digits: true
                             },
                             location_id: "required",
-                            primary_instrument: "required",
+                            'primary_instrument[]': "required",
                             plan: "required",
                         },
                         messages: {
@@ -466,7 +474,7 @@
                                 digits: "Please enter a valid phone number"
                             },
                             location_id: "Please select a location",
-                            primary_instrument: "Please select a primary instrument",
+                            'primary_instrument[]': "Please select a primary instrument",
                             plan: "Please select a plan",
                         },
                         errorClass: "error",
@@ -514,7 +522,7 @@
                                 digits: true
                             },
                             location_id: "required",
-                            primary_instrument: "required",
+                            'primary_instrument[]': "required",
                             plan: "required",
                         },
                         messages: {
@@ -533,7 +541,7 @@
                                 digits: "Please enter a valid phone number"
                             },
                             location_id: "Please select a location",
-                            primary_instrument: "Please select a primary instrument",
+                            'primary_instrument[]': "Please select a primary instrument",
                             plan: "Please select a plan",
                         },
                         errorClass: "error",
@@ -593,7 +601,7 @@
                                     digits: true
                                 },
                                 location_id: "required",
-                                primary_instrument: "required",
+                                'primary_instrument[]': "required",
                                 plan: "required",
                                 // parent_first_name: {
                                 //     required: true
@@ -654,7 +662,7 @@
                                     digits: "Please enter a valid phone number"
                                 },
                                 location_id: "Please select a location",
-                                primary_instrument: "Please select a primary instrument",
+                                'primary_instrument[]': "Please select a primary instrument",
                                 plan: "Please select a plan",
                                 parent_first_name: "Please enter the parent's first name",
                                 parent_second_name: "Please enter the parent's second name",
@@ -723,7 +731,7 @@
                             digits: true
                         },
                         location_id: "required",
-                        primary_instrument: "required",
+                        'primary_instrument[]': "required",
                         plan: "required",
                         parent_first_name: {
                             required: true
@@ -784,7 +792,7 @@
                             digits: "Please enter a valid phone number"
                         },
                         location_id: "Please select a location",
-                        primary_instrument: "Please select a primary instrument",
+                        'primary_instrument[]': "Please select a primary instrument",
                         plan: "Please select a plan",
                         parent_first_name: "Please enter the parent's first name",
                         parent_second_name: "Please enter the parent's second name",
@@ -852,7 +860,7 @@
                                 digits: true
                             },
                             location_id: "required",
-                            primary_instrument: "required",
+                            'primary_instrument[]': "required",
                             plan: "required",
                             // parent_first_name: {
                             //     required: true
@@ -913,7 +921,7 @@
                                 digits: "Please enter a valid phone number"
                             },
                             location_id: "Please select a location",
-                            primary_instrument: "Please select a primary instrument",
+                            'primary_instrument[]': "Please select a primary instrument",
                             plan: "Please select a plan",
                             parent_first_name: "Please enter the parent's first name",
                             parent_second_name: "Please enter the parent's second name",
