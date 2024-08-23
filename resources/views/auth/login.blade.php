@@ -91,7 +91,7 @@
     @php
         $cmsSetting = App\Models\CmsSettting::pluck('value', 'key')->toArray();
     @endphp
-    <link rel="icon" type="image/png" href="{{ asset($cmsSetting['favicon_logo']) ?? '' }}" sizes="16x16">
+    <link rel="icon" type="image/png" href="{{ asset(isset($cmsSetting['favicon_logo']) ? $cmsSetting['favicon_logo'] : '')}}" sizes="16x16">
     <!-- remix icon font css  -->
     <link rel="stylesheet" href="{{ asset('assets/css/remixicon.css') }}">
     <!-- BootStrap css -->

@@ -153,15 +153,17 @@ Route::group(['middleware' => ['auth','role:Super Admin|Admin|Desk|Teacher'], 'p
     });
 });
 
+Route::get('/permission-seeder-run', function () {
+    Artisan::call('db:seed --class=PermissionSeeder');
+    return "Yupp!!! PermissionSeeder Seeder Successfully !";
+});
+
 Route::get('/role-seeder-run', function () {
     Artisan::call('db:seed --class=RoleSeeder');
     return "Yupp!!! RoleSeeder Seeder Successfully !";
 });
 
-Route::get('/permission-seeder-run', function () {
-    Artisan::call('db:seed --class=PermissionSeeder');
-    return "Yupp!!! PermissionSeeder Seeder Successfully !";
-});
+
 
 Route::get('/user-seeder-run', function () {
     Artisan::call('db:seed --class=UserSeeder');
@@ -173,10 +175,10 @@ Route::get('/cms-seeder-run', function () {
     return "Yupp!!! CMSSettingSeeder Seeder Successfully !";
 });
 
-Route::get('/subscription-seeder-run', function () {
-    Artisan::call('db:seed --class=SubscriptionSeeder');
-    return "Yupp!!! SubscriptionSeeder Seeder Successfully !";
-});
+// Route::get('/subscription-seeder-run', function () {
+//     Artisan::call('db:seed --class=SubscriptionSeeder');
+//     return "Yupp!!! SubscriptionSeeder Seeder Successfully !";
+// });
 
 Route::get('/migrate', function(){
     Artisan::call('migrate');
