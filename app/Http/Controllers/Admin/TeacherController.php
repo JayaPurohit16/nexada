@@ -343,6 +343,7 @@ class TeacherController extends Controller
                     'fullName' => $teacher->fullName,
                     'email' => $teacher->userInfo->email,
                     'phone' => $teacher->userInfo->phone,
+                    'user_id' => $teacher->user_id,
                 ];
             }),
         ], 200);

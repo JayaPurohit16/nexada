@@ -148,6 +148,9 @@
                             let deleteUrl =
                                 '{{ route('admin.teacher.destroy', ['id' => '__id__']) }}'
                                 .replace('__id__', data);
+                            let chatUrl =
+                                '{{ route('user', ['id' => '__id__']) }}'
+                                .replace('__id__', row.user_id);
 
                             return `<a href="${editUrl}"
                                         class="w-32-px h-32-px bg-success-focus text-success-main rounded-circle d-inline-flex align-items-center justify-content-center">
@@ -157,10 +160,14 @@
                                         data-url="${deleteUrl}"
                                         class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center delete-role">
                                         <iconify-icon icon="mingcute:delete-2-line"></iconify-icon>
+                                    </a>
+                                    <a href="${chatUrl}"
+                                        class="w-32-px h-32-px bg-danger-focus text-danger-main rounded-circle d-inline-flex align-items-center justify-content-center">
+                                        <iconify-icon icon="token-branded:chat"></iconify-icon>
                                     </a>`;
                         },
                         orderable:false,
-                    }
+                    },
                 ],
                 createdRow: function(row, data, dataIndex) {
                     // Cell index column
